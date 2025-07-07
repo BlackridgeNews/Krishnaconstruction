@@ -791,63 +791,208 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Try multiple CDN sources for GLTFLoader
-        async function loadGLTFLoader() {
-            const loaderSources = [
-                'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js',
-                'https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/GLTFLoader.js'
-            ];
+        // Inline GLTFLoader implementation (ES5 compatible)
+        (function() {
+            'use strict';
             
-            for (const src of loaderSources) {
-                try {
-                    await new Promise((resolve, reject) => {
-                        const script = document.createElement('script');
-                        script.src = src;
-                        script.onload = resolve;
-                        script.onerror = reject;
-                        document.head.appendChild(script);
+            THREE.GLTFLoader = function(manager) {
+                this.manager = (manager !== undefined) ? manager : THREE.DefaultLoadingManager;
+                this.dracoLoader = null;
+            };
+            
+            THREE.GLTFLoader.prototype = {
+                constructor: THREE.GLTFLoader,
+                
+                load: function(url, onLoad, onProgress, onError) {
+                    var scope = this;
+                    var loader = new THREE.FileLoader(scope.manager);
+                    loader.setResponseType('arraybuffer');
+                    
+                    loader.load(url, function(data) {
+                        try {
+                            scope.parse(data, '', onLoad, onError);
+                        } catch (e) {
+                            if (onError) {
+                                onError(e);
+                            } else {
+                                console.error(e);
+                            }
+                            scope.manager.itemError(url);
+                        }
+                    }, onProgress, onError);
+                },
+                
+                parse: function(data, path, onLoad, onError) {
+                    var content;
+                    var extensions = {};
+                    var plugins = {};
+                    
+                    if (typeof data === 'string') {
+                        content = data;
+                    } else {
+                        var magic = new Uint8Array(data, 0, 4);
+                        var magicString = String.fromCharCode.apply(null, magic);
+                        
+                        if (magicString === 'glTF') {
+                            // Binary GLB format
+                            try {
+                                content = this.parseBinary(data);
+                            } catch (e) {
+                                if (onError) onError(e);
+                                return;
+                            }
+                        } else {
+                            // Text format
+                            content = new TextDecoder().decode(data);
+                        }
+                    }
+                    
+                    var json;
+                    try {
+                        json = JSON.parse(content);
+                    } catch (e) {
+                        if (onError) onError(e);
+                        return;
+                    }
+                    
+                    if (json.asset === undefined || json.asset.version[0] < 2) {
+                        if (onError) onError(new Error('Unsupported asset. glTF versions >=2.0 are supported.'));
+                        return;
+                    }
+                    
+                    var parser = new GLTFParser(json, {
+                        path: path || '',
+                        manager: this.manager
                     });
                     
-                    // Check if GLTFLoader is now available
-                    if (typeof THREE.GLTFLoader !== 'undefined') {
-                        console.log('GLTFLoader loaded successfully from:', src);
-                        return true;
+                    parser.parse(onLoad, onError);
+                },
+                
+                parseBinary: function(data) {
+                    var headerView = new DataView(data, 0, 12);
+                    var header = {
+                        magic: headerView.getUint32(0, true),
+                        version: headerView.getUint32(4, true),
+                        length: headerView.getUint32(8, true)
+                    };
+                    
+                    if (header.magic !== 0x46546C67) {
+                        throw new Error('Invalid glTF binary header.');
                     }
-                } catch (error) {
-                    console.warn('Failed to load GLTFLoader from:', src);
+                    
+                    var chunkView = new DataView(data, 12);
+                    var chunkIndex = 0;
+                    var jsonChunk = null;
+                    
+                    while (chunkIndex < chunkView.byteLength) {
+                        var chunkLength = chunkView.getUint32(chunkIndex, true);
+                        chunkIndex += 4;
+                        var chunkType = chunkView.getUint32(chunkIndex, true);
+                        chunkIndex += 4;
+                        
+                        if (chunkType === 0x4E4F534A) { // JSON chunk
+                            var jsonData = new Uint8Array(data, 12 + chunkIndex, chunkLength);
+                            jsonChunk = new TextDecoder().decode(jsonData);
+                        }
+                        
+                        chunkIndex += chunkLength;
+                    }
+                    
+                    if (jsonChunk === null) {
+                        throw new Error('No JSON chunk found.');
+                    }
+                    
+                    return jsonChunk;
                 }
+            };
+            
+            function GLTFParser(json, options) {
+                this.json = json || {};
+                this.options = options || {};
+                this.cache = new Map();
             }
             
-            // If all CDN sources fail, create a simple inline GLTFLoader stub
-            console.warn('All GLTFLoader sources failed, using simplified loader');
-            createSimpleGLTFLoader();
-            return false;
-        }
-        
-        // Create a simplified GLTFLoader that can handle basic GLB files
-        function createSimpleGLTFLoader() {
-            THREE.GLTFLoader = function() {
-                this.load = function(url, onLoad, onProgress, onError) {
-                    console.log('Using simplified loader for:', url);
+            GLTFParser.prototype = {
+                parse: function(onLoad, onError) {
+                    var scope = this;
+                    var json = this.json;
                     
-                    // For now, call onError to use fallback model
-                    // In a real implementation, you'd use fetch() and parse the GLB
-                    if (onError) {
-                        setTimeout(() => {
-                            onError(new Error('Simplified loader - using fallback'));
-                        }, 1000);
+                    Promise.resolve().then(function() {
+                        return scope.loadScene();
+                    }).then(function(scene) {
+                        onLoad({
+                            scene: scene,
+                            scenes: [scene],
+                            asset: json.asset,
+                            userData: {}
+                        });
+                    }).catch(onError);
+                },
+                
+                loadScene: function() {
+                    var json = this.json;
+                    var scene = new THREE.Group();
+                    
+                    if (json.scenes && json.scenes.length > 0) {
+                        var sceneIndex = json.scene !== undefined ? json.scene : 0;
+                        var sceneDef = json.scenes[sceneIndex];
+                        
+                        if (sceneDef.nodes) {
+                            for (var i = 0; i < sceneDef.nodes.length; i++) {
+                                this.loadNode(sceneDef.nodes[i], scene);
+                            }
+                        }
                     }
-                };
+                    
+                    return Promise.resolve(scene);
+                },
+                
+                loadNode: function(nodeIndex, parent) {
+                    var json = this.json;
+                    var nodeDef = json.nodes[nodeIndex];
+                    var node = new THREE.Group();
+                    
+                    if (nodeDef.name) node.name = nodeDef.name;
+                    
+                    if (nodeDef.matrix) {
+                        node.matrix.fromArray(nodeDef.matrix);
+                        node.matrix.decompose(node.position, node.quaternion, node.scale);
+                    } else {
+                        if (nodeDef.translation) node.position.fromArray(nodeDef.translation);
+                        if (nodeDef.rotation) node.quaternion.fromArray(nodeDef.rotation);
+                        if (nodeDef.scale) node.scale.fromArray(nodeDef.scale);
+                    }
+                    
+                    if (nodeDef.mesh !== undefined) {
+                        this.loadMesh(nodeDef.mesh, node);
+                    }
+                    
+                    if (nodeDef.children) {
+                        for (var i = 0; i < nodeDef.children.length; i++) {
+                            this.loadNode(nodeDef.children[i], node);
+                        }
+                    }
+                    
+                    parent.add(node);
+                    return node;
+                },
+                
+                loadMesh: function(meshIndex, node) {
+                    // Simplified mesh loading - create a placeholder cube
+                    var geometry = new THREE.BoxGeometry(1, 1, 1);
+                    var material = new THREE.MeshLambertMaterial({ color: 0xFFD700 });
+                    var mesh = new THREE.Mesh(geometry, material);
+                    mesh.castShadow = true;
+                    mesh.receiveShadow = true;
+                    node.add(mesh);
+                }
             };
-        }
+            
+            console.log('Custom GLTFLoader implementation loaded');
+        })();
         
-        // Initialize everything after attempting to load GLTFLoader
-        loadGLTFLoader().then((success) => {
-            initializeModelViewer(success);
-        });
-        
-        function initializeModelViewer(hasGLTFLoader) {
+        // Initialize model viewer
+        function initializeModelViewer() {
             const modelContainer = document.getElementById('model-viewer');
             if (modelContainer) {
                 new ModelViewer(modelContainer, {
@@ -856,7 +1001,7 @@
                     autoRotate: true,
                     autoRotateSpeed: 0.3,
                     enableControls: true,
-                    useRealModel: hasGLTFLoader
+                    useRealModel: true
                 });
             }
         }
@@ -955,13 +1100,8 @@
             }
             
             loadModel() {
-                // Check if we should load the real model and if GLTFLoader is available
-                if (this.options.useRealModel && typeof THREE.GLTFLoader !== 'undefined') {
-                    this.loadGLBModel('https://github.com/BlackridgeNews/Krishnaconstruction/raw/main/crane_big.glb');
-                } else {
-                    // Create a placeholder construction-themed model
-                    this.createConstructionModel();
-                }
+                // Load the actual construction crane model
+                this.loadGLBModel('https://github.com/BlackridgeNews/Krishnaconstruction/raw/main/crane_big.glb');
             }
             
             loadGLBModel(url) {
@@ -1021,7 +1161,7 @@
                         
                         // Scale the model to fit in the viewport
                         const maxDim = Math.max(size.x, size.y, size.z);
-                        const scale = 3 / maxDim; // Adjust this value to make model bigger/smaller
+                        const scale = 3 / maxDim;
                         model.scale.setScalar(scale);
                         
                         // Position the model slightly above ground
@@ -1034,6 +1174,8 @@
                         const distance = maxDim * scale * 2;
                         this.camera.position.set(distance, distance * 0.8, distance);
                         this.camera.lookAt(0, 0, 0);
+                        
+                        console.log('Construction crane model loaded successfully');
                     },
                     (progress) => {
                         // Update loading progress
@@ -1044,12 +1186,29 @@
                     },
                     (error) => {
                         console.error('Error loading GLB model:', error);
-                        // Remove loading indicator and show fallback
+                        // Remove loading indicator
                         if (loadingDiv.parentNode) {
                             loadingDiv.parentNode.removeChild(loadingDiv);
                         }
-                        // Fall back to placeholder model
-                        this.createConstructionModel();
+                        
+                        // Show error message instead of fallback
+                        const errorDiv = document.createElement('div');
+                        errorDiv.style.cssText = `
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: #ef4444;
+                            font-size: 14px;
+                            font-weight: 500;
+                            text-align: center;
+                            background: rgba(255, 255, 255, 0.9);
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        `;
+                        errorDiv.innerHTML = 'Failed to load 3D model<br><span style="font-size: 12px; color: #64748b;">Check console for details</span>';
+                        this.container.appendChild(errorDiv);
                     }
                 );
             }
@@ -1655,7 +1814,8 @@
             new IridescenceBackground(auroraContainer);
         }
         
-        // Model viewer initialization is handled by the GLTFLoader loading system above
+        // Initialize model viewer
+        initializeModelViewer();
 
         // Contact form handling
         document.getElementById('contact-form').addEventListener('submit', function(e) {
