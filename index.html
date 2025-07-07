@@ -16,6 +16,25 @@
             line-height: 1.6;
             color: #2c3e50;
             background-color: #f8fafc;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .aurora-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .aurora-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .container {
@@ -66,8 +85,32 @@
         .hero {
             background: white;
             padding: 80px 0;
-            text-align: center;
             border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-model {
+            flex-shrink: 0;
+            width: 400px;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
         }
 
         .hero h1 {
@@ -82,7 +125,7 @@
             font-size: 1.1rem;
             color: #64748b;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0;
         }
 
         .filter-section {
@@ -384,6 +427,144 @@
             color: white;
         }
 
+        .contact-section {
+            background: white;
+            padding: 60px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .contact-item {
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .contact-value {
+            color: #1e293b;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .contact-value:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-value a {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .contact-value a:hover {
+            color: #1e3a8a;
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #1e293b;
+            background: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px 30px;
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -420,10 +601,37 @@
                 gap: 15px;
                 align-items: flex-start;
             }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-model {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="aurora-background" id="aurora-container"></div>
+    
     <header>
         <div class="container">
             <div class="header-content">
@@ -441,9 +649,14 @@
     </header>
 
     <section class="hero">
-        <div class="container">
-            <h1>Project Management Dashboard</h1>
-            <p>Comprehensive tracking and monitoring of commercial and residential construction projects</p>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Project Management Dashboard</h1>
+                <p>Comprehensive tracking and monitoring of commercial and residential construction projects</p>
+            </div>
+            <div class="hero-model">
+                <div id="model-viewer"></div>
+            </div>
         </div>
     </section>
 
@@ -493,6 +706,81 @@
         </div>
     </section>
 
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-label">Phone Numbers</div>
+                        <div class="contact-value">
+                            <a href="tel:+19179937467">+1 (917) 993 7467</a>
+                        </div>
+                        <div class="contact-value">
+                            <a href="tel:+918500460460">+91 8500 460 460</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">
+                            <a href="mailto:info@blackridgeresearch.com">info@blackridgeresearch.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Address</div>
+                        <div class="contact-value">
+                            <strong>Blackridge Research & Consulting</strong><br>
+                            2nd Floor, Vaishnavi Cynosure Building<br>
+                            Gachibowli, Hyderabad<br>
+                            Telangana, India<br>
+                            Pin - 500032
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 class="form-title">Get In Touch</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-type">Project Type</label>
+                            <select id="project-type" name="project-type">
+                                <option value="">Select Project Type</option>
+                                <option value="commercial">Commercial Construction</option>
+                                <option value="residential">Residential Construction</option>
+                                <option value="consultation">Project Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -501,7 +789,521 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/GLTFLoader.js"></script>
     <script>
+        // 3D Model Viewer Implementation
+        class ModelViewer {
+            constructor(container, options = {}) {
+                this.container = container;
+                this.options = {
+                    width: 400,
+                    height: 400,
+                    autoRotate: true,
+                    autoRotateSpeed: 0.5,
+                    enableControls: true,
+                    ...options
+                };
+                
+                this.scene = null;
+                this.camera = null;
+                this.renderer = null;
+                this.model = null;
+                this.animationId = null;
+                this.controls = null;
+                
+                this.init();
+            }
+            
+            init() {
+                // Scene setup
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0xf8fafc);
+                
+                // Camera setup
+                this.camera = new THREE.PerspectiveCamera(
+                    50,
+                    this.options.width / this.options.height,
+                    0.1,
+                    1000
+                );
+                this.camera.position.set(5, 5, 5);
+                
+                // Renderer setup
+                this.renderer = new THREE.WebGLRenderer({ 
+                    antialias: true,
+                    alpha: true 
+                });
+                this.renderer.setSize(this.options.width, this.options.height);
+                this.renderer.shadowMap.enabled = true;
+                this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                this.renderer.outputEncoding = THREE.sRGBEncoding;
+                this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                
+                this.container.appendChild(this.renderer.domElement);
+                
+                // Lighting setup
+                this.setupLighting();
+                
+                // Load model
+                this.loadModel();
+                
+                // Controls (basic orbit simulation)
+                if (this.options.enableControls) {
+                    this.setupControls();
+                }
+                
+                // Start animation
+                this.animate();
+                
+                // Handle resize
+                window.addEventListener('resize', () => this.handleResize());
+            }
+            
+            setupLighting() {
+                // Ambient light
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
+                this.scene.add(ambientLight);
+                
+                // Directional light (key light)
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+                directionalLight.position.set(5, 5, 5);
+                directionalLight.castShadow = true;
+                directionalLight.shadow.mapSize.width = 2048;
+                directionalLight.shadow.mapSize.height = 2048;
+                this.scene.add(directionalLight);
+                
+                // Fill light
+                const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
+                fillLight.position.set(-5, 2, 5);
+                this.scene.add(fillLight);
+                
+                // Rim light
+                const rimLight = new THREE.DirectionalLight(0xffffff, 0.5);
+                rimLight.position.set(0, 4, -5);
+                this.scene.add(rimLight);
+            }
+            
+            loadModel() {
+                // Load the actual construction crane model
+                this.loadGLBModel('https://github.com/BlackridgeNews/Krishnaconstruction/raw/main/crane_big.glb');
+            }
+            
+            loadGLBModel(url) {
+                const loader = new THREE.GLTFLoader();
+                
+                // Add loading indicator
+                const loadingDiv = document.createElement('div');
+                loadingDiv.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #64748b;
+                    font-size: 14px;
+                    font-weight: 500;
+                `;
+                loadingDiv.textContent = 'Loading 3D Model...';
+                this.container.appendChild(loadingDiv);
+                
+                loader.load(
+                    url,
+                    (gltf) => {
+                        // Remove loading indicator
+                        if (loadingDiv.parentNode) {
+                            loadingDiv.parentNode.removeChild(loadingDiv);
+                        }
+                        
+                        const model = gltf.scene;
+                        
+                        // Setup model properties
+                        model.traverse((child) => {
+                            if (child.isMesh) {
+                                child.castShadow = true;
+                                child.receiveShadow = true;
+                                
+                                // Ensure materials are properly set up
+                                if (child.material) {
+                                    child.material.needsUpdate = true;
+                                }
+                            }
+                        });
+                        
+                        // Calculate bounding box and center the model
+                        const box = new THREE.Box3().setFromObject(model);
+                        const center = box.getCenter(new THREE.Vector3());
+                        const size = box.getSize(new THREE.Vector3());
+                        
+                        // Center the model
+                        model.position.x = -center.x;
+                        model.position.y = -center.y;
+                        model.position.z = -center.z;
+                        
+                        // Scale the model to fit in the viewport
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        const scale = 3 / maxDim; // Adjust this value to make model bigger/smaller
+                        model.scale.setScalar(scale);
+                        
+                        // Position the model slightly above ground
+                        model.position.y += (size.y * scale) / 2;
+                        
+                        this.model = model;
+                        this.scene.add(model);
+                        
+                        // Adjust camera position based on model size
+                        const distance = maxDim * scale * 2;
+                        this.camera.position.set(distance, distance * 0.8, distance);
+                        this.camera.lookAt(0, 0, 0);
+                    },
+                    (progress) => {
+                        // Update loading progress
+                        const percent = Math.round((progress.loaded / progress.total) * 100);
+                        loadingDiv.textContent = `Loading 3D Model... ${percent}%`;
+                    },
+                    (error) => {
+                        console.error('Error loading GLB model:', error);
+                        // Remove loading indicator and show fallback
+                        if (loadingDiv.parentNode) {
+                            loadingDiv.parentNode.removeChild(loadingDiv);
+                        }
+                        // Fall back to placeholder model
+                        this.createConstructionModel();
+                    }
+                );
+            }
+            
+            createConstructionModel() {
+                const group = new THREE.Group();
+                
+                // Create a simple building structure
+                const buildingGeometry = new THREE.BoxGeometry(2, 3, 1.5);
+                const buildingMaterial = new THREE.MeshLambertMaterial({ 
+                    color: 0x8B7355 // Brown building color
+                });
+                const building = new THREE.Mesh(buildingGeometry, buildingMaterial);
+                building.position.y = 1.5;
+                building.castShadow = true;
+                building.receiveShadow = true;
+                group.add(building);
+                
+                // Create roof
+                const roofGeometry = new THREE.ConeGeometry(1.8, 1, 4);
+                const roofMaterial = new THREE.MeshLambertMaterial({ 
+                    color: 0x8B4513 // Darker brown for roof
+                });
+                const roof = new THREE.Mesh(roofGeometry, roofMaterial);
+                roof.position.y = 3.5;
+                roof.rotation.y = Math.PI / 4;
+                roof.castShadow = true;
+                group.add(roof);
+                
+                // Create construction crane
+                const cranePoleGeometry = new THREE.CylinderGeometry(0.05, 0.05, 4);
+                const craneMaterial = new THREE.MeshLambertMaterial({ 
+                    color: 0xFFD700 // Yellow crane color
+                });
+                const cranePole = new THREE.Mesh(cranePoleGeometry, craneMaterial);
+                cranePole.position.set(2.5, 2, 0);
+                cranePole.castShadow = true;
+                group.add(cranePole);
+                
+                // Crane arm
+                const craneArmGeometry = new THREE.BoxGeometry(3, 0.1, 0.1);
+                const craneArm = new THREE.Mesh(craneArmGeometry, craneMaterial);
+                craneArm.position.set(3.5, 4, 0);
+                craneArm.castShadow = true;
+                group.add(craneArm);
+                
+                // Create ground plane
+                const groundGeometry = new THREE.PlaneGeometry(10, 10);
+                const groundMaterial = new THREE.MeshLambertMaterial({ 
+                    color: 0x90EE90 // Light green ground
+                });
+                const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+                ground.rotation.x = -Math.PI / 2;
+                ground.receiveShadow = true;
+                group.add(ground);
+                
+                // Add some construction materials
+                const materialGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+                const materialMat = new THREE.MeshLambertMaterial({ 
+                    color: 0x696969 // Gray materials
+                });
+                
+                for (let i = 0; i < 5; i++) {
+                    const material = new THREE.Mesh(materialGeometry, materialMat);
+                    material.position.set(
+                        -2 + i * 0.6,
+                        0.25,
+                        -2
+                    );
+                    material.castShadow = true;
+                    material.receiveShadow = true;
+                    group.add(material);
+                }
+                
+                // Scale and position the entire model
+                group.scale.setScalar(0.8);
+                group.position.y = -0.5;
+                
+                this.model = group;
+                this.scene.add(group);
+            }
+            
+            setupControls() {
+                // Simple mouse interaction for rotation
+                let isMouseDown = false;
+                let mouseX = 0, mouseY = 0;
+                
+                this.renderer.domElement.addEventListener('mousedown', (e) => {
+                    isMouseDown = true;
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+                
+                this.renderer.domElement.addEventListener('mousemove', (e) => {
+                    if (!isMouseDown || !this.model) return;
+                    
+                    const deltaX = e.clientX - mouseX;
+                    const deltaY = e.clientY - mouseY;
+                    
+                    this.model.rotation.y += deltaX * 0.01;
+                    this.model.rotation.x += deltaY * 0.01;
+                    
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+                
+                this.renderer.domElement.addEventListener('mouseup', () => {
+                    isMouseDown = false;
+                });
+                
+                this.renderer.domElement.addEventListener('wheel', (e) => {
+                    if (!this.camera) return;
+                    
+                    const delta = e.deltaY * 0.01;
+                    this.camera.position.z += delta;
+                    this.camera.position.z = Math.max(3, Math.min(15, this.camera.position.z));
+                });
+            }
+            
+            animate() {
+                this.animationId = requestAnimationFrame(() => this.animate());
+                
+                // Auto rotation
+                if (this.options.autoRotate && this.model) {
+                    this.model.rotation.y += this.options.autoRotateSpeed * 0.01;
+                }
+                
+                // Update camera to look at model center
+                this.camera.lookAt(0, 0, 0);
+                
+                this.renderer.render(this.scene, this.camera);
+            }
+            
+            handleResize() {
+                if (!this.camera || !this.renderer) return;
+                
+                const rect = this.container.getBoundingClientRect();
+                this.camera.aspect = rect.width / rect.height;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(rect.width, rect.height);
+            }
+            
+            destroy() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+                if (this.renderer && this.container.contains(this.renderer.domElement)) {
+                    this.container.removeChild(this.renderer.domElement);
+                }
+                if (this.renderer) {
+                    this.renderer.dispose();
+                }
+            }
+        }
+
+        // Iridescence background implementation
+        class IridescenceBackground {
+            constructor(container) {
+                this.container = container;
+                this.canvas = null;
+                this.gl = null;
+                this.program = null;
+                this.animationId = null;
+                this.startTime = Date.now();
+                this.mousePos = { x: 0.5, y: 0.5 };
+                
+                this.init();
+            }
+            
+            init() {
+                this.canvas = document.createElement('canvas');
+                this.canvas.className = 'aurora-canvas';
+                this.container.appendChild(this.canvas);
+                
+                this.gl = this.canvas.getContext('webgl', {
+                    alpha: false,
+                    premultipliedAlpha: false,
+                    antialias: true
+                });
+                
+                if (!this.gl) {
+                    console.warn('WebGL not supported');
+                    return;
+                }
+                
+                this.gl.clearColor(1, 1, 1, 1);
+                
+                this.setupShaders();
+                this.setupGeometry();
+                this.resize();
+                this.animate();
+                
+                window.addEventListener('resize', () => this.resize());
+            }
+            
+            setupShaders() {
+                const vertexShaderSource = `
+                attribute vec2 uv;
+                attribute vec2 position;
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = vec4(position, 0, 1);
+                }`;
+                
+                const fragmentShaderSource = `
+                precision highp float;
+                uniform float uTime;
+                uniform vec3 uColor;
+                uniform vec3 uResolution;
+                uniform vec2 uMouse;
+                uniform float uAmplitude;
+                uniform float uSpeed;
+                varying vec2 vUv;
+                
+                void main() {
+                    float mr = min(uResolution.x, uResolution.y);
+                    vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
+                    uv += (uMouse - vec2(0.5)) * uAmplitude;
+                    float d = -uTime * 0.5 * uSpeed;
+                    float a = 0.0;
+                    for (float i = 0.0; i < 8.0; ++i) {
+                        a += cos(i - d - a * uv.x);
+                        d += sin(uv.y * i + a);
+                    }
+                    d += uTime * 0.5 * uSpeed;
+                    vec3 col = vec3(cos(uv * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.5 + 0.5);
+                    col = cos(col * cos(vec3(d, a, 2.5)) * 0.5 + 0.5) * uColor;
+                    gl_FragColor = vec4(col, 1.0);
+                }`;
+                
+                const vertexShader = this.createShader(this.gl.VERTEX_SHADER, vertexShaderSource);
+                const fragmentShader = this.createShader(this.gl.FRAGMENT_SHADER, fragmentShaderSource);
+                
+                this.program = this.gl.createProgram();
+                this.gl.attachShader(this.program, vertexShader);
+                this.gl.attachShader(this.program, fragmentShader);
+                this.gl.linkProgram(this.program);
+                
+                if (!this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) {
+                    console.error('Program link error:', this.gl.getProgramInfoLog(this.program));
+                }
+                
+                this.gl.useProgram(this.program);
+                
+                // Get uniform locations
+                this.uniforms = {
+                    uTime: this.gl.getUniformLocation(this.program, 'uTime'),
+                    uColor: this.gl.getUniformLocation(this.program, 'uColor'),
+                    uResolution: this.gl.getUniformLocation(this.program, 'uResolution'),
+                    uMouse: this.gl.getUniformLocation(this.program, 'uMouse'),
+                    uAmplitude: this.gl.getUniformLocation(this.program, 'uAmplitude'),
+                    uSpeed: this.gl.getUniformLocation(this.program, 'uSpeed')
+                };
+                
+                // Set initial uniform values
+                this.gl.uniform3f(this.uniforms.uColor, 1.0, 1.0, 1.0); // White color as specified
+                this.gl.uniform2f(this.uniforms.uMouse, this.mousePos.x, this.mousePos.y);
+                this.gl.uniform1f(this.uniforms.uAmplitude, 0.1);
+                this.gl.uniform1f(this.uniforms.uSpeed, 1.0);
+            }
+            
+            createShader(type, source) {
+                const shader = this.gl.createShader(type);
+                this.gl.shaderSource(shader, source);
+                this.gl.compileShader(shader);
+                
+                if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
+                    console.error('Shader compile error:', this.gl.getShaderInfoLog(shader));
+                    this.gl.deleteShader(shader);
+                    return null;
+                }
+                
+                return shader;
+            }
+            
+            setupGeometry() {
+                // Create a triangle that covers the entire screen
+                const vertices = new Float32Array([
+                    -1, -1,  0, 0,  // position, uv
+                     3, -1,  2, 0,
+                    -1,  3,  0, 2
+                ]);
+                
+                this.buffer = this.gl.createBuffer();
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.buffer);
+                this.gl.bufferData(this.gl.ARRAY_BUFFER, vertices, this.gl.STATIC_DRAW);
+                
+                const positionLocation = this.gl.getAttribLocation(this.program, 'position');
+                const uvLocation = this.gl.getAttribLocation(this.program, 'uv');
+                
+                this.gl.enableVertexAttribArray(positionLocation);
+                this.gl.vertexAttribPointer(positionLocation, 2, this.gl.FLOAT, false, 16, 0);
+                
+                this.gl.enableVertexAttribArray(uvLocation);
+                this.gl.vertexAttribPointer(uvLocation, 2, this.gl.FLOAT, false, 16, 8);
+            }
+            
+            resize() {
+                const rect = this.container.getBoundingClientRect();
+                const scale = 1;
+                this.canvas.width = rect.width * scale;
+                this.canvas.height = rect.height * scale;
+                this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+                
+                this.gl.uniform3f(this.uniforms.uResolution, 
+                    this.canvas.width, 
+                    this.canvas.height, 
+                    this.canvas.width / this.canvas.height
+                );
+            }
+            
+            animate() {
+                const currentTime = (Date.now() - this.startTime) * 0.001;
+                this.gl.uniform1f(this.uniforms.uTime, currentTime);
+                
+                this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+                this.gl.drawArrays(this.gl.TRIANGLES, 0, 3);
+                
+                this.animationId = requestAnimationFrame(() => this.animate());
+            }
+            
+            destroy() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+                if (this.canvas && this.canvas.parentNode) {
+                    this.canvas.parentNode.removeChild(this.canvas);
+                }
+                if (this.gl) {
+                    const ext = this.gl.getExtension('WEBGL_lose_context');
+                    if (ext) ext.loseContext();
+                }
+            }
+        }
+
         // Sample project data
         const projects = [
             {
@@ -731,6 +1533,43 @@
         // Initialize
         renderProjects(projects);
         updateStats();
+        
+        // Initialize Iridescence background
+        const auroraContainer = document.getElementById('aurora-container');
+        if (auroraContainer) {
+            new IridescenceBackground(auroraContainer);
+        }
+        
+        // Initialize 3D Model Viewer
+        const modelContainer = document.getElementById('model-viewer');
+        if (modelContainer) {
+            new ModelViewer(modelContainer, {
+                width: 400,
+                height: 400,
+                autoRotate: true,
+                autoRotateSpeed: 0.3,
+                enableControls: true
+            });
+        }
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple form validation
+            if (!data.name || !data.email || !data.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            this.reset();
+        });
 
         // Add smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
