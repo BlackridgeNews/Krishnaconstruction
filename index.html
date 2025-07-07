@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Construction - Project Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e40af;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu li a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: #1e40af;
+        }
+
+        .hero {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 30px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        .filter-btn.active {
+            background: #1e40af;
+            color: white;
+            border-color: #1e40af;
+        }
+
+        .search-box {
+            padding: 10px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background: white;
+            color: #1e293b;
+            font-size: 0.9rem;
+            min-width: 300px;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .search-box::placeholder {
+            color: #94a3b8;
+        }
+
+        .projects-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .project-location {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .project-type {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-type.commercial {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .project-type.residential {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .project-description {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            font-size: 0.9rem;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .progress-section {
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .progress-percentage {
+            font-size: 0.9rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #f1f5f9;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #1e40af;
+            transition: width 0.3s ease;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-planning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-in-progress {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-on-hold {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .client-info {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 60px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            font-size: 0.9rem;
+        }
+
+        .footer-content strong {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .project-footer {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Krishna Construction</div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Project Management Dashboard</h1>
+            <p>Comprehensive tracking and monitoring of commercial and residential construction projects</p>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                <input type="text" class="search-box" placeholder="Search projects...">
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Active Projects</h2>
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-projects">0</div>
+                    <div class="stat-label">Total Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completed-projects">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="active-projects">0</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="investment-value">₹0</div>
+                    <div class="stat-label">Total Investment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <strong>Krishna Construction</strong> • Established 1995 • Excellence in Construction
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample project data
+        const projects = [
+            {
+                id: 1,
+                title: "Skyline Commercial Plaza",
+                type: "commercial",
+                location: "Mumbai, Maharashtra",
+                startDate: "Jan 15, 2024",
+                endDate: "Aug 30, 2025",
+                budget: "₹15 Crores",
+                status: "in-progress",
+                progress: 65,
+                description: "A modern 25-story commercial complex featuring retail spaces, premium offices, and integrated parking facilities.",
+                client: "Skyline Developers",
+                area: "2,50,000 sq ft"
+            },
+            {
+                id: 2,
+                title: "Green Valley Residences",
+                type: "residential",
+                location: "Pune, Maharashtra",
+                startDate: "Mar 01, 2024",
+                endDate: "Dec 15, 2025",
+                budget: "₹8 Crores",
+                status: "in-progress",
+                progress: 45,
+                description: "Luxury residential complex with 120 apartments, featuring amenities including swimming pool and landscaped gardens.",
+                client: "Green Valley Group",
+                area: "1,80,000 sq ft"
+            },
+            {
+                id: 3,
+                title: "Tech Hub Office Complex",
+                type: "commercial",
+                location: "Bangalore, Karnataka",
+                startDate: "Jun 01, 2023",
+                endDate: "Nov 30, 2024",
+                budget: "₹22 Crores",
+                status: "completed",
+                progress: 100,
+                description: "State-of-the-art IT office complex with modern amenities and smart building management systems.",
+                client: "TechCorp Solutions",
+                area: "3,20,000 sq ft"
+            },
+            {
+                id: 4,
+                title: "Sunrise Apartments",
+                type: "residential",
+                location: "Hyderabad, Telangana",
+                startDate: "May 01, 2024",
+                endDate: "Feb 28, 2026",
+                budget: "₹12 Crores",
+                status: "planning",
+                progress: 15,
+                description: "Premium residential towers with 200 units, clubhouse, and comprehensive recreational facilities.",
+                client: "Sunrise Properties",
+                area: "2,10,000 sq ft"
+            },
+            {
+                id: 5,
+                title: "Metro Mall Extension",
+                type: "commercial",
+                location: "Delhi, NCR",
+                startDate: "Sep 01, 2023",
+                endDate: "Dec 31, 2024",
+                budget: "₹18 Crores",
+                status: "completed",
+                progress: 100,
+                description: "Expansion of existing shopping mall with additional retail spaces and modern food court facilities.",
+                client: "Metro Retail Group",
+                area: "1,50,000 sq ft"
+            },
+            {
+                id: 6,
+                title: "Golden Heights Villa",
+                type: "residential",
+                location: "Goa",
+                startDate: "Feb 01, 2024",
+                endDate: "Jun 30, 2025",
+                budget: "₹5 Crores",
+                status: "on-hold",
+                progress: 30,
+                description: "Luxury villa project with 50 independent villas located in prime beachfront location.",
+                client: "Golden Properties",
+                area: "75,000 sq ft"
+            },
+            {
+                id: 7,
+                title: "Business Park Phase 2",
+                type: "commercial",
+                location: "Chennai, Tamil Nadu",
+                startDate: "Apr 01, 2024",
+                endDate: "Oct 31, 2025",
+                budget: "₹25 Crores",
+                status: "in-progress",
+                progress: 55,
+                description: "Second phase of business park development with office buildings and conference facilities.",
+                client: "Business Park Ltd",
+                area: "4,00,000 sq ft"
+            },
+            {
+                id: 8,
+                title: "Harmony Housing Society",
+                type: "residential",
+                location: "Ahmedabad, Gujarat",
+                startDate: "Dec 01, 2023",
+                endDate: "May 31, 2025",
+                budget: "₹10 Crores",
+                status: "in-progress",
+                progress: 70,
+                description: "Affordable housing project with 150 apartments and comprehensive community facilities.",
+                client: "Harmony Developers",
+                area: "1,25,000 sq ft"
+            }
+        ];
+
+        let filteredProjects = projects;
+
+        function renderProjects(projectsToRender) {
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = '';
+
+            projectsToRender.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                
+                projectCard.innerHTML = `
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">${project.title}</h3>
+                            <p class="project-location">${project.location}</p>
+                        </div>
+                        <span class="project-type ${project.type}">${project.type}</span>
+                    </div>
+                    
+                    <div class="project-description">
+                        ${project.description}
+                    </div>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Start Date</div>
+                            <div class="meta-value">${project.startDate}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Budget</div>
+                            <div class="meta-value">${project.budget}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Area</div>
+                            <div class="meta-value">${project.area}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">End Date</div>
+                            <div class="meta-value">${project.endDate}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <span class="progress-label">Progress</span>
+                            <span class="progress-percentage">${project.progress}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${project.progress}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-footer">
+                        <span class="status-badge status-${project.status}">${project.status.replace('-', ' ')}</span>
+                        <span class="client-info">${project.client}</span>
+                    </div>
+                `;
+                
+                grid.appendChild(projectCard);
+            });
+        }
+
+        function updateStats() {
+            const totalProjects = projects.length;
+            const completedProjects = projects.filter(p => p.status === 'completed').length;
+            const activeProjects = projects.filter(p => p.status === 'in-progress').length;
+            const totalInvestment = projects.reduce((sum, p) => {
+                const value = parseFloat(p.budget.replace('₹', '').replace(' Crores', ''));
+                return sum + value;
+            }, 0);
+
+            document.getElementById('total-projects').textContent = totalProjects;
+            document.getElementById('completed-projects').textContent = completedProjects;
+            document.getElementById('active-projects').textContent = activeProjects;
+            document.getElementById('investment-value').textContent = `₹${totalInvestment}Cr`;
+        }
+
+        function filterProjects(filter) {
+            if (filter === 'all') {
+                filteredProjects = projects;
+            } else if (filter === 'commercial' || filter === 'residential') {
+                filteredProjects = projects.filter(p => p.type === filter);
+            } else if (filter === 'completed' || filter === 'in-progress') {
+                filteredProjects = projects.filter(p => p.status === filter);
+            }
+            renderProjects(filteredProjects);
+        }
+
+        function searchProjects(query) {
+            const searchResults = filteredProjects.filter(p => 
+                p.title.toLowerCase().includes(query.toLowerCase()) ||
+                p.location.toLowerCase().includes(query.toLowerCase()) ||
+                p.client.toLowerCase().includes(query.toLowerCase())
+            );
+            renderProjects(searchResults);
+        }
+
+        // Event listeners
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                filterProjects(e.target.dataset.filter);
+            });
+        });
+
+        document.querySelector('.search-box').addEventListener('input', (e) => {
+            searchProjects(e.target.value);
+        });
+
+        // Initialize
+        renderProjects(projects);
+        updateStats();
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
