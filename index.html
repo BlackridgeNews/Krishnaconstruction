@@ -232,6 +232,7 @@
 
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .form-group label {
@@ -250,13 +251,106 @@
             font-size: 0.95rem;
             color: #1e293b;
             background: white;
-            transition: border-color 0.2s ease;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
         }
 
         .form-group input:focus {
             outline: none;
             border-color: #1e40af;
             box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-group input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .form-group input.success {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #10b981;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 0.8rem;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            margin: 4px 0;
+            overflow: hidden;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+            width: 0%;
+            background: #ef4444;
+        }
+
+        .strength-fill.weak {
+            width: 25%;
+            background: #ef4444;
+        }
+
+        .strength-fill.fair {
+            width: 50%;
+            background: #f59e0b;
+        }
+
+        .strength-fill.good {
+            width: 75%;
+            background: #3b82f6;
+        }
+
+        .strength-fill.strong {
+            width: 100%;
+            background: #10b981;
+        }
+
+        .required-field {
+            color: #ef4444;
+        }
+
+        .form-group .input-icon {
+            position: absolute;
+            right: 12px;
+            top: 38px;
+            color: #94a3b8;
+            transition: color 0.2s ease;
+        }
+
+        .form-group .input-icon.success {
+            color: #10b981;
+        }
+
+        .form-group .input-icon.error {
+            color: #ef4444;
         }
 
         .auth-button {
@@ -276,6 +370,17 @@
         .auth-button:hover {
             background: #1e3a8a;
             transform: translateY(-1px);
+        }
+
+        .auth-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-button:disabled:hover {
+            background: #9ca3af;
+            transform: none;
         }
 
         .close-modal {
@@ -312,6 +417,141 @@
         .forgot-password a:hover {
             color: #1e3a8a;
             text-decoration: underline;
+        }
+
+        /* About Section Styles */
+        .about-section {
+            background: white;
+            padding: 80px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+            align-items: start;
+        }
+
+        .about-intro {
+            margin-bottom: 40px;
+        }
+
+        .about-intro h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .about-intro p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .feature-item:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .about-stats {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .stat-item:hover {
+            border-color: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .about-mission {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .about-mission h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .about-mission h4:first-child {
+            margin-top: 0;
+        }
+
+        .about-mission p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .hero {
@@ -423,38 +663,128 @@
             flex-wrap: wrap;
         }
 
-        .filter-btn {
-            padding: 10px 20px;
+        /* GooeyNav Styles */
+        .gooey-nav-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .gooey-nav-container nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 8px;
             background: #f1f5f9;
+            border-radius: 50px;
+            padding: 8px;
+            position: relative;
+        }
+
+        .gooey-nav-container nav li {
+            position: relative;
+        }
+
+        .gooey-nav-container nav li a {
+            display: block;
+            padding: 12px 24px;
+            text-decoration: none;
             color: #64748b;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
             font-weight: 500;
-            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            border-radius: 25px;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
 
-        .filter-btn:hover {
-            background: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        .filter-btn.active {
-            background: #1e40af;
+        .gooey-nav-container nav li.active a {
             color: white;
-            border-color: #1e40af;
+        }
+
+        .effect {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .effect.filter {
+            background: #1e40af;
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .effect.text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+        }
+
+        .effect.text.active {
+            opacity: 1;
+        }
+
+        .particle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .particle .point {
+            width: 100%;
+            height: 100%;
+            background: var(--color, rgba(255, 255, 255, 0.8));
+            border-radius: 50%;
+            transform: scale(var(--scale, 1)) rotate(var(--rotate, 0deg));
+            animation: particle-move var(--time, 1000ms) ease-out forwards;
+        }
+
+        @keyframes particle-move {
+            0% {
+                transform: translate(var(--start-x, 0), var(--start-y, 0)) scale(var(--scale, 1)) rotate(var(--rotate, 0deg));
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--end-x, 0), var(--end-y, 0)) scale(0) rotate(calc(var(--rotate, 0deg) + 180deg));
+                opacity: 0;
+            }
+        }
+
+        .gooey-nav-container.active .effect.filter {
+            filter: blur(10px);
+        }
+
+        /* CSS Variables for particle colors */
+        :root {
+            --color-1: rgba(255, 255, 255, 0.9);
+            --color-2: rgba(135, 206, 250, 0.8);
+            --color-3: rgba(173, 216, 230, 0.7);
+            --color-4: rgba(255, 255, 255, 0.6);
         }
 
         .search-box {
-            padding: 10px 16px;
+            padding: 12px 20px;
             border: 1px solid #e2e8f0;
-            border-radius: 6px;
+            border-radius: 25px;
             background: white;
             color: #1e293b;
             font-size: 0.9rem;
             min-width: 300px;
-            transition: border-color 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .search-box:focus {
@@ -916,7 +1246,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Krishna Construction</div>
+                <div class="logo">Sri Krishna Construction</div>
                 <div class="nav-section">
                     <nav>
                         <ul class="nav-menu">
@@ -926,11 +1256,11 @@
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </nav>
-                    <button class="star-border-container" id="login-btn">
+                    <div class="star-border-container" id="login-btn">
                         <div class="border-gradient-bottom" style="background: radial-gradient(circle, cyan, transparent 10%); animation-duration: 5s;"></div>
                         <div class="border-gradient-top" style="background: radial-gradient(circle, cyan, transparent 10%); animation-duration: 5s;"></div>
-                        <div class="inner-content">Login / Sign Up</div>
-                    </button>
+                        <div class="inner-content">Login / Signup</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -943,7 +1273,7 @@
             
             <div class="modal-header">
                 <h2 class="modal-title">Welcome Back</h2>
-                <p class="modal-subtitle">Access your Krishna Construction account</p>
+                <p class="modal-subtitle">Access your Sri Krishna Construction account</p>
             </div>
 
             <div class="auth-tabs">
@@ -973,58 +1303,169 @@
             <!-- Signup Form -->
             <form class="auth-form" id="signup-form">
                 <div class="form-group">
-                    <label for="signup-name">Full Name</label>
+                    <label for="signup-name">Full Name <span class="required-field">*</span></label>
                     <input type="text" id="signup-name" name="name" required>
+                    <span class="input-icon" id="name-icon">👤</span>
+                    <div class="error-message" id="name-error">Please enter your full name</div>
+                    <div class="success-message" id="name-success">✓ Name looks good</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="signup-email">Email Address</label>
+                    <label for="signup-email">Email Address <span class="required-field">*</span></label>
                     <input type="email" id="signup-email" name="email" required>
+                    <span class="input-icon" id="email-icon">📧</span>
+                    <div class="error-message" id="email-error">Please enter a valid email address</div>
+                    <div class="success-message" id="email-success">✓ Email is valid</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="signup-phone">Phone Number</label>
-                    <input type="tel" id="signup-phone" name="phone" required>
+                    <label for="signup-phone">Phone Number <span class="required-field">*</span></label>
+                    <input type="tel" id="signup-phone" name="phone" required placeholder="+91 98765 43210">
+                    <span class="input-icon" id="phone-icon">📱</span>
+                    <div class="error-message" id="phone-error">Please enter a valid phone number</div>
+                    <div class="success-message" id="phone-success">✓ Phone number is valid</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="signup-password">Password</label>
+                    <label for="signup-password">Password <span class="required-field">*</span></label>
                     <input type="password" id="signup-password" name="password" required>
+                    <span class="input-icon" id="password-icon">🔒</span>
+                    <div class="error-message" id="password-error">Password must be at least 8 characters</div>
+                    <div class="password-strength" id="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strength-fill"></div>
+                        </div>
+                        <span id="strength-text">Password strength: </span>
+                    </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="signup-confirm">Confirm Password</label>
+                    <label for="signup-confirm">Confirm Password <span class="required-field">*</span></label>
                     <input type="password" id="signup-confirm" name="confirmPassword" required>
+                    <span class="input-icon" id="confirm-icon">🔒</span>
+                    <div class="error-message" id="confirm-error">Passwords do not match</div>
+                    <div class="success-message" id="confirm-success">✓ Passwords match</div>
                 </div>
                 
-                <button type="submit" class="auth-button">Create Account</button>
+                <button type="submit" class="auth-button" id="signup-submit" disabled>Create Account</button>
             </form>
         </div>
     </div>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Find Your Dream Residential Project at <span class="animated-gradient-text"><span class="text-content" style="background-image: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa); animation-duration: 3s;">Krishna Construction</span></span></h1>
-            <p>Comprehensive tracking and monitoring of commercial and residential construction projects</p>
+            <h1>Find Your Dream Residential Project at <span class="animated-gradient-text"><span class="text-content" style="background-image: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa); animation-duration: 3s;">Sri Krishna Construction</span></span></h1>
         </div>
     </section>
 
     <section class="filter-section">
         <div class="container">
             <div class="filter-controls">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="commercial">Commercial</button>
-                <button class="filter-btn" data-filter="residential">Residential</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
-                <button class="filter-btn" data-filter="in-progress">In Progress</button>
-                <input type="text" class="search-box" placeholder="Search projects...">
+                <div class="gooey-nav-container" id="gooey-nav">
+                    <nav>
+                        <ul id="nav-list">
+                            <li class="active">
+                                <a href="javascript:void(0)" data-filter="all">All Projects</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" data-filter="commercial">Commercial</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" data-filter="residential">Residential</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" data-filter="completed">Completed</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" data-filter="in-progress">In Progress</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <span class="effect filter" id="nav-filter"></span>
+                    <span class="effect text" id="nav-text"></span>
+                </div>
+                <input type="text" class="search-box" placeholder="Search projects..." id="search-input">
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Sri Krishna Construction</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-intro">
+                        <h3>Building Dreams Since 1995</h3>
+                        <p>Sri Krishna Construction has been a trusted name in the construction industry for over 25 years, delivering exceptional residential and commercial projects across India. Our commitment to quality, innovation, and customer satisfaction has made us a preferred choice for thousands of families and businesses.</p>
+                    </div>
+                    
+                    <div class="about-features">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">🏗️</div>
+                                <h4>Expert Craftsmanship</h4>
+                                <p>Our skilled team of engineers, architects, and craftsmen ensure every project meets the highest standards of quality and durability.</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">⏰</div>
+                                <h4>Timely Delivery</h4>
+                                <p>We pride ourselves on delivering projects on time, every time, without compromising on quality or safety standards.</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">💰</div>
+                                <h4>Transparent Pricing</h4>
+                                <p>No hidden costs or surprises. We provide detailed estimates and maintain complete transparency throughout the project lifecycle.</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">🌟</div>
+                                <h4>Customer First</h4>
+                                <p>Your satisfaction is our priority. We work closely with clients to understand their vision and bring it to life.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Happy Families</div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Expert Team</div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-mission">
+                        <h4>Our Mission</h4>
+                        <p>To create exceptional living and working spaces that enhance the quality of life for our clients while maintaining the highest standards of construction excellence, environmental responsibility, and customer service.</p>
+                        
+                        <h4>Our Vision</h4>
+                        <p>To be the most trusted and innovative construction company in India, known for transforming architectural dreams into reality through sustainable building practices and cutting-edge technology.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="projects-section">
         <div class="container">
-            <h2 class="section-title">Active Projects</h2>
+            <h2 class="section-title">Project Overview</h2>
             <div class="projects-grid" id="projects-grid">
                 <!-- Projects will be populated by JavaScript -->
             </div>
@@ -1060,16 +1501,6 @@
             <h2 class="section-title">Contact Us</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-label">Phone Numbers</div>
-                        <div class="contact-value">
-                            <a href="tel:+19179937467">+1 (917) 993 7467</a>
-                        </div>
-                        <div class="contact-value">
-                            <a href="tel:+918500460460">+91 8500 460 460</a>
-                        </div>
-                    </div>
-                    
                     <div class="contact-item">
                         <div class="contact-label">Email</div>
                         <div class="contact-value">
@@ -1133,7 +1564,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <strong>Krishna Construction</strong> • Established 1995 • Excellence in Construction
+                <strong>Sri Krishna Construction</strong> • Established 1995 • Excellence in Construction
             </div>
         </div>
     </footer>
@@ -1320,6 +1751,176 @@
             }
         }
 
+        // GooeyNav Implementation
+        class GooeyNav {
+            constructor(container) {
+                this.container = container;
+                this.navList = container.querySelector('#nav-list');
+                this.filterEffect = container.querySelector('#nav-filter');
+                this.textEffect = container.querySelector('#nav-text');
+                this.activeIndex = 0;
+                this.animationTime = 600;
+                this.particleCount = 12;
+                this.particleDistances = [60, 8];
+                this.particleR = 80;
+                this.timeVariance = 200;
+                this.colors = [1, 2, 3, 1, 2, 3, 1, 4];
+                
+                this.init();
+            }
+            
+            init() {
+                if (!this.navList || !this.filterEffect || !this.textEffect) {
+                    console.warn('GooeyNav: Required elements not found');
+                    return;
+                }
+                
+                this.setupEventListeners();
+                
+                const firstItem = this.navList.children[this.activeIndex];
+                if (firstItem) {
+                    this.updateEffectPosition(firstItem);
+                    this.textEffect.classList.add('active');
+                }
+            }
+            
+            setupEventListeners() {
+                Array.from(this.navList.children).forEach((li, index) => {
+                    const link = li.querySelector('a');
+                    if (link) {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.handleClick(li, index);
+                        });
+                    }
+                });
+            }
+            
+            noise(n = 1) {
+                return n / 2 - Math.random() * n;
+            }
+            
+            getXY(distance, pointIndex, totalPoints) {
+                const angle = ((360 + this.noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
+                return [distance * Math.cos(angle), distance * Math.sin(angle)];
+            }
+            
+            createParticle(i, t, d, r) {
+                let rotate = this.noise(r / 10);
+                return {
+                    start: this.getXY(d[0], this.particleCount - i, this.particleCount),
+                    end: this.getXY(d[1] + this.noise(7), this.particleCount - i, this.particleCount),
+                    time: t,
+                    scale: 1 + this.noise(0.2),
+                    color: this.colors[Math.floor(Math.random() * this.colors.length)],
+                    rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10,
+                };
+            }
+            
+            makeParticles(element) {
+                const d = this.particleDistances;
+                const r = this.particleR;
+                const bubbleTime = this.animationTime * 2 + this.timeVariance;
+                element.style.setProperty('--time', `${bubbleTime}ms`);
+                
+                for (let i = 0; i < this.particleCount; i++) {
+                    const t = this.animationTime * 2 + this.noise(this.timeVariance * 2);
+                    const p = this.createParticle(i, t, d, r);
+                    element.classList.remove('active');
+                    
+                    setTimeout(() => {
+                        const particle = document.createElement('span');
+                        const point = document.createElement('span');
+                        particle.classList.add('particle');
+                        particle.style.setProperty('--start-x', `${p.start[0]}px`);
+                        particle.style.setProperty('--start-y', `${p.start[1]}px`);
+                        particle.style.setProperty('--end-x', `${p.end[0]}px`);
+                        particle.style.setProperty('--end-y', `${p.end[1]}px`);
+                        particle.style.setProperty('--time', `${p.time}ms`);
+                        particle.style.setProperty('--scale', `${p.scale}`);
+                        particle.style.setProperty('--color', `var(--color-${p.color}, white)`);
+                        particle.style.setProperty('--rotate', `${p.rotate}deg`);
+                        
+                        point.classList.add('point');
+                        particle.appendChild(point);
+                        element.appendChild(particle);
+                        
+                        requestAnimationFrame(() => {
+                            element.classList.add('active');
+                        });
+                        
+                        setTimeout(() => {
+                            try {
+                                element.removeChild(particle);
+                            } catch (e) {
+                                // Particle already removed
+                            }
+                        }, t);
+                    }, 30);
+                }
+            }
+            
+            updateEffectPosition(liElement) {
+                if (!this.container || !this.filterEffect || !this.textEffect || !liElement) return;
+                
+                const containerRect = this.container.getBoundingClientRect();
+                const pos = liElement.getBoundingClientRect();
+                
+                const styles = {
+                    left: `${pos.x - containerRect.x}px`,
+                    top: `${pos.y - containerRect.y}px`,
+                    width: `${pos.width}px`,
+                    height: `${pos.height}px`,
+                };
+                
+                Object.assign(this.filterEffect.style, styles);
+                Object.assign(this.textEffect.style, styles);
+                
+                const linkElement = liElement.querySelector('a');
+                if (linkElement) {
+                    this.textEffect.innerText = linkElement.innerText;
+                }
+            }
+            
+            handleClick(liElement, index) {
+                if (this.activeIndex === index) return;
+                
+                // Update active states
+                Array.from(this.navList.children).forEach(li => li.classList.remove('active'));
+                liElement.classList.add('active');
+                this.activeIndex = index;
+                
+                // Update effect position
+                this.updateEffectPosition(liElement);
+                
+                // Clear existing particles
+                const particles = this.filterEffect.querySelectorAll('.particle');
+                particles.forEach(p => this.filterEffect.removeChild(p));
+                
+                // Animate text
+                this.textEffect.classList.remove('active');
+                void this.textEffect.offsetWidth; // Force reflow
+                this.textEffect.classList.add('active');
+                
+                // Create new particles
+                this.makeParticles(this.filterEffect);
+                
+                // Trigger filter change
+                const linkElement = liElement.querySelector('a');
+                if (linkElement) {
+                    const filterValue = linkElement.getAttribute('data-filter');
+                    this.onFilterChange(filterValue);
+                }
+            }
+            
+            onFilterChange(filter) {
+                // This will be connected to the main filter functionality
+                if (window.filterProjects) {
+                    window.filterProjects(filter);
+                }
+            }
+        }
+
         // Sample project data
         const projects = [
             {
@@ -1465,14 +2066,6 @@
                             <div class="meta-value">${project.startDate}</div>
                         </div>
                         <div class="meta-item">
-                            <div class="meta-label">Budget</div>
-                            <div class="meta-value">${project.budget}</div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-label">Area</div>
-                            <div class="meta-value">${project.area}</div>
-                        </div>
-                        <div class="meta-item">
                             <div class="meta-label">End Date</div>
                             <div class="meta-value">${project.endDate}</div>
                         </div>
@@ -1490,7 +2083,6 @@
                     
                     <div class="project-footer">
                         <span class="status-badge status-${project.status}">${project.status.replace('-', ' ')}</span>
-                        <span class="client-info">${project.client}</span>
                     </div>
                 `;
                 
@@ -1524,6 +2116,9 @@
             renderProjects(filteredProjects);
         }
 
+        // Make filterProjects available globally for GooeyNav
+        window.filterProjects = filterProjects;
+
         function searchProjects(query) {
             const searchResults = filteredProjects.filter(p => 
                 p.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -1534,15 +2129,7 @@
         }
 
         // Event listeners
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                filterProjects(e.target.dataset.filter);
-            });
-        });
-
-        document.querySelector('.search-box').addEventListener('input', (e) => {
+        document.querySelector('#search-input').addEventListener('input', (e) => {
             searchProjects(e.target.value);
         });
 
@@ -1554,6 +2141,12 @@
         const auroraContainer = document.getElementById('aurora-container');
         if (auroraContainer) {
             new IridescenceBackground(auroraContainer);
+        }
+
+        // Initialize GooeyNav
+        const gooeyNavContainer = document.getElementById('gooey-nav');
+        if (gooeyNavContainer) {
+            new GooeyNav(gooeyNavContainer);
         }
 
         // Login Modal functionality
@@ -1617,7 +2210,7 @@
                     modalSubtitle.textContent = 'Access your Krishna Construction account';
                 } else {
                     modalTitle.textContent = 'Create Account';
-                    modalSubtitle.textContent = 'Join Krishna Construction today';
+                    modalSubtitle.textContent = 'Join Sri Krishna Construction today';
                 }
             });
         });
@@ -1639,28 +2232,204 @@
             closeLoginModal();
         });
 
-        document.getElementById('signup-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+        // Enhanced signup form validation
+        const signupForm = document.getElementById('signup-form');
+        const signupSubmit = document.getElementById('signup-submit');
+        
+        // Validation functions
+        function validateName(name) {
+            return name.trim().length >= 2 && /^[a-zA-Z\s]+$/.test(name.trim());
+        }
+        
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        function validatePhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+        }
+        
+        function validatePassword(password) {
+            return {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /\d/.test(password),
+                special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+            };
+        }
+        
+        function getPasswordStrength(password) {
+            const validation = validatePassword(password);
+            const score = Object.values(validation).filter(Boolean).length;
+            
+            if (score <= 2) return 'weak';
+            if (score === 3) return 'fair';
+            if (score === 4) return 'good';
+            return 'strong';
+        }
+        
+        function showFieldStatus(fieldId, isValid, errorMsg = '', successMsg = '') {
+            const field = document.getElementById(fieldId);
+            const errorEl = document.getElementById(`${fieldId.replace('signup-', '')}-error`);
+            const successEl = document.getElementById(`${fieldId.replace('signup-', '')}-success`);
+            const iconEl = document.getElementById(`${fieldId.replace('signup-', '')}-icon`);
+            
+            field.classList.remove('error', 'success');
+            errorEl.classList.remove('show');
+            successEl.classList.remove('show');
+            iconEl.classList.remove('error', 'success');
+            
+            if (isValid) {
+                field.classList.add('success');
+                iconEl.classList.add('success');
+                if (successMsg) {
+                    successEl.textContent = successMsg;
+                    successEl.classList.add('show');
+                }
+            } else {
+                field.classList.add('error');
+                iconEl.classList.add('error');
+                if (errorMsg) {
+                    errorEl.textContent = errorMsg;
+                    errorEl.classList.add('show');
+                }
+            }
+        }
+        
+        function checkFormValidity() {
             const name = document.getElementById('signup-name').value;
             const email = document.getElementById('signup-email').value;
             const phone = document.getElementById('signup-phone').value;
             const password = document.getElementById('signup-password').value;
             const confirmPassword = document.getElementById('signup-confirm').value;
             
-            // Validation
-            if (!name || !email || !phone || !password || !confirmPassword) {
-                alert('Please fill in all fields');
+            const isNameValid = validateName(name);
+            const isEmailValid = validateEmail(email);
+            const isPhoneValid = validatePhone(phone);
+            const isPasswordValid = validatePassword(password).length && getPasswordStrength(password) !== 'weak';
+            const isConfirmValid = password === confirmPassword && password.length > 0;
+            
+            const isFormValid = isNameValid && isEmailValid && isPhoneValid && isPasswordValid && isConfirmValid;
+            
+            signupSubmit.disabled = !isFormValid;
+            return isFormValid;
+        }
+        
+        // Real-time validation
+        document.getElementById('signup-name').addEventListener('input', (e) => {
+            const name = e.target.value;
+            const isValid = validateName(name);
+            
+            if (name.length > 0) {
+                showFieldStatus('signup-name', isValid, 
+                    'Name must be at least 2 characters and contain only letters', 
+                    '✓ Name looks good');
+            }
+            checkFormValidity();
+        });
+        
+        document.getElementById('signup-email').addEventListener('input', (e) => {
+            const email = e.target.value;
+            const isValid = validateEmail(email);
+            
+            if (email.length > 0) {
+                showFieldStatus('signup-email', isValid, 
+                    'Please enter a valid email address', 
+                    '✓ Email is valid');
+            }
+            checkFormValidity();
+        });
+        
+        document.getElementById('signup-phone').addEventListener('input', (e) => {
+            const phone = e.target.value;
+            const isValid = validatePhone(phone);
+            
+            if (phone.length > 0) {
+                showFieldStatus('signup-phone', isValid, 
+                    'Please enter a valid phone number', 
+                    '✓ Phone number is valid');
+            }
+            checkFormValidity();
+        });
+        
+        document.getElementById('signup-password').addEventListener('input', (e) => {
+            const password = e.target.value;
+            const validation = validatePassword(password);
+            const strength = getPasswordStrength(password);
+            
+            // Update strength indicator
+            const strengthFill = document.getElementById('strength-fill');
+            const strengthText = document.getElementById('strength-text');
+            
+            strengthFill.className = `strength-fill ${strength}`;
+            strengthText.textContent = `Password strength: ${strength.charAt(0).toUpperCase() + strength.slice(1)}`;
+            
+            if (password.length > 0) {
+                const isValid = validation.length && strength !== 'weak';
+                let errorMsg = '';
+                
+                if (!validation.length) {
+                    errorMsg = 'Password must be at least 8 characters';
+                } else if (strength === 'weak') {
+                    errorMsg = 'Password is too weak. Add uppercase, numbers, or symbols';
+                }
+                
+                showFieldStatus('signup-password', isValid, errorMsg, '');
+            }
+            
+            // Recheck confirm password
+            const confirmPassword = document.getElementById('signup-confirm').value;
+            if (confirmPassword.length > 0) {
+                const isConfirmValid = password === confirmPassword;
+                showFieldStatus('signup-confirm', isConfirmValid, 
+                    'Passwords do not match', 
+                    '✓ Passwords match');
+            }
+            
+            checkFormValidity();
+        });
+        
+        document.getElementById('signup-confirm').addEventListener('input', (e) => {
+            const confirmPassword = e.target.value;
+            const password = document.getElementById('signup-password').value;
+            const isValid = confirmPassword === password && password.length > 0;
+            
+            if (confirmPassword.length > 0) {
+                showFieldStatus('signup-confirm', isValid, 
+                    'Passwords do not match', 
+                    '✓ Passwords match');
+            }
+            checkFormValidity();
+        });
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (!checkFormValidity()) {
+                alert('Please fix the errors in the form');
                 return;
             }
             
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const phone = document.getElementById('signup-phone').value;
             
             // Simulate signup
-            alert(`Account created for: ${name} (${email})`);
+            alert(`Account created successfully for: ${name} (${email})`);
             closeLoginModal();
+            
+            // Reset form
+            signupForm.reset();
+            document.querySelectorAll('.form-group input').forEach(input => {
+                input.classList.remove('error', 'success');
+            });
+            document.querySelectorAll('.error-message, .success-message').forEach(msg => {
+                msg.classList.remove('show');
+            });
+            signupSubmit.disabled = true;
         });
 
         // Forgot password
