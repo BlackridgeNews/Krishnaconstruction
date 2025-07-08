@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,6 +57,12 @@
             padding: 20px 0;
         }
 
+        .nav-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -82,35 +87,244 @@
             color: #1e40af;
         }
 
+        /* StarBorder Implementation */
+        .star-border-container {
+            position: relative;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 12px 24px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1e40af;
+            transition: all 0.2s ease;
+        }
+
+        .star-border-container:hover {
+            transform: translateY(-1px);
+        }
+
+        .border-gradient-bottom,
+        .border-gradient-top {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            left: 0;
+            animation: star-move linear infinite;
+        }
+
+        .border-gradient-bottom {
+            bottom: 0;
+        }
+
+        .border-gradient-top {
+            top: 0;
+            animation-direction: reverse;
+        }
+
+        @keyframes star-move {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .inner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .auth-tab.active {
+            background: white;
+            color: #1e40af;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #1e293b;
+            background: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 12px 24px;
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 16px;
+        }
+
+        .auth-button:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .close-modal:hover {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .forgot-password a {
+            color: #1e40af;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #1e3a8a;
+            text-decoration: underline;
+        }
+
         .hero {
             background: white;
             padding: 80px 0;
             border-bottom: 1px solid #e2e8f0;
+            text-align: center;
         }
 
         .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 60px;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-
-        .hero-text {
-            flex: 1;
-            text-align: left;
-        }
-
-        .hero-model {
-            flex-shrink: 0;
-            width: 400px;
-            height: 400px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e2e8f0;
         }
 
         .hero h1 {
@@ -119,13 +333,80 @@
             color: #1e293b;
             margin-bottom: 20px;
             letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.1rem;
             color: #64748b;
-            max-width: 600px;
             margin: 0;
+        }
+
+        /* Gradient Text Implementation */
+        .animated-gradient-text {
+            position: relative;
+            margin: 0 auto;
+            display: inline-flex;
+            max-width: fit-content;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1.25rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            transition: box-shadow 0.5s ease-out;
+            overflow: hidden;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: 300% 100%;
+            animation: gradient linear infinite;
+            border-radius: inherit;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .gradient-overlay::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: inherit;
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #060010;
+            z-index: -1;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .text-content {
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            background-size: 300% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradient linear infinite;
         }
 
         .filter-section {
@@ -636,27 +917,95 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">Krishna Construction</div>
-                <nav>
-                    <ul class="nav-menu">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
+                <div class="nav-section">
+                    <nav>
+                        <ul class="nav-menu">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <button class="star-border-container" id="login-btn">
+                        <div class="border-gradient-bottom" style="background: radial-gradient(circle, cyan, transparent 10%); animation-duration: 5s;"></div>
+                        <div class="border-gradient-top" style="background: radial-gradient(circle, cyan, transparent 10%); animation-duration: 5s;"></div>
+                        <div class="inner-content">Login / Sign Up</div>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">Welcome Back</h2>
+                <p class="modal-subtitle">Access your Krishna Construction account</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                
+                <button type="submit" class="auth-button">Sign In</button>
+                
+                <div class="forgot-password">
+                    <a href="#" id="forgot-password">Forgot your password?</a>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-phone">Phone Number</label>
+                    <input type="tel" id="signup-phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" name="confirmPassword" required>
+                </div>
+                
+                <button type="submit" class="auth-button">Create Account</button>
+            </form>
+        </div>
+    </div>
+
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>Project Management Dashboard</h1>
-                <p>Comprehensive tracking and monitoring of commercial and residential construction projects</p>
-            </div>
-            <div class="hero-model">
-                <div id="model-viewer"></div>
-            </div>
+            <h1>Find Your Dream Residential Project at <span class="animated-gradient-text"><span class="text-content" style="background-image: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa); animation-duration: 3s;">Krishna Construction</span></span></h1>
+            <p>Comprehensive tracking and monitoring of commercial and residential construction projects</p>
         </div>
     </section>
 
@@ -724,15 +1073,15 @@
                     <div class="contact-item">
                         <div class="contact-label">Email</div>
                         <div class="contact-value">
-                            <a href="mailto:info@blackridgeresearch.com">info@blackridgeresearch.com</a>
+                            <a href="mailto:info@srikrishnaconstruction.com">info@srikrishnaconstruction.com</a>
                         </div>
                     </div>
                     
                     <div class="contact-item">
                         <div class="contact-label">Address</div>
                         <div class="contact-value">
-                            <strong>Blackridge Research & Consulting</strong><br>
-                            2nd Floor, Vaishnavi Cynosure Building<br>
+                            <strong>Sri Krishna Construction</strong><br>
+                            8th Floor, Vaishnavi Cynosure Building<br>
                             Gachibowli, Hyderabad<br>
                             Telangana, India<br>
                             Pin - 500032
@@ -789,614 +1138,7 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Inline GLTFLoader implementation (ES5 compatible)
-        (function() {
-            'use strict';
-            
-            THREE.GLTFLoader = function(manager) {
-                this.manager = (manager !== undefined) ? manager : THREE.DefaultLoadingManager;
-                this.dracoLoader = null;
-            };
-            
-            THREE.GLTFLoader.prototype = {
-                constructor: THREE.GLTFLoader,
-                
-                load: function(url, onLoad, onProgress, onError) {
-                    var scope = this;
-                    var loader = new THREE.FileLoader(scope.manager);
-                    loader.setResponseType('arraybuffer');
-                    
-                    loader.load(url, function(data) {
-                        try {
-                            scope.parse(data, '', onLoad, onError);
-                        } catch (e) {
-                            if (onError) {
-                                onError(e);
-                            } else {
-                                console.error(e);
-                            }
-                            scope.manager.itemError(url);
-                        }
-                    }, onProgress, onError);
-                },
-                
-                parse: function(data, path, onLoad, onError) {
-                    var content;
-                    var extensions = {};
-                    var plugins = {};
-                    
-                    if (typeof data === 'string') {
-                        content = data;
-                    } else {
-                        var magic = new Uint8Array(data, 0, 4);
-                        var magicString = String.fromCharCode.apply(null, magic);
-                        
-                        if (magicString === 'glTF') {
-                            // Binary GLB format
-                            try {
-                                content = this.parseBinary(data);
-                            } catch (e) {
-                                if (onError) onError(e);
-                                return;
-                            }
-                        } else {
-                            // Text format
-                            content = new TextDecoder().decode(data);
-                        }
-                    }
-                    
-                    var json;
-                    try {
-                        json = JSON.parse(content);
-                    } catch (e) {
-                        if (onError) onError(e);
-                        return;
-                    }
-                    
-                    if (json.asset === undefined || json.asset.version[0] < 2) {
-                        if (onError) onError(new Error('Unsupported asset. glTF versions >=2.0 are supported.'));
-                        return;
-                    }
-                    
-                    var parser = new GLTFParser(json, {
-                        path: path || '',
-                        manager: this.manager
-                    });
-                    
-                    parser.parse(onLoad, onError);
-                },
-                
-                parseBinary: function(data) {
-                    var headerView = new DataView(data, 0, 12);
-                    var header = {
-                        magic: headerView.getUint32(0, true),
-                        version: headerView.getUint32(4, true),
-                        length: headerView.getUint32(8, true)
-                    };
-                    
-                    if (header.magic !== 0x46546C67) {
-                        throw new Error('Invalid glTF binary header.');
-                    }
-                    
-                    var chunkView = new DataView(data, 12);
-                    var chunkIndex = 0;
-                    var jsonChunk = null;
-                    
-                    while (chunkIndex < chunkView.byteLength) {
-                        var chunkLength = chunkView.getUint32(chunkIndex, true);
-                        chunkIndex += 4;
-                        var chunkType = chunkView.getUint32(chunkIndex, true);
-                        chunkIndex += 4;
-                        
-                        if (chunkType === 0x4E4F534A) { // JSON chunk
-                            var jsonData = new Uint8Array(data, 12 + chunkIndex, chunkLength);
-                            jsonChunk = new TextDecoder().decode(jsonData);
-                        }
-                        
-                        chunkIndex += chunkLength;
-                    }
-                    
-                    if (jsonChunk === null) {
-                        throw new Error('No JSON chunk found.');
-                    }
-                    
-                    return jsonChunk;
-                }
-            };
-            
-            function GLTFParser(json, options) {
-                this.json = json || {};
-                this.options = options || {};
-                this.cache = new Map();
-            }
-            
-            GLTFParser.prototype = {
-                parse: function(onLoad, onError) {
-                    var scope = this;
-                    var json = this.json;
-                    
-                    Promise.resolve().then(function() {
-                        return scope.loadScene();
-                    }).then(function(scene) {
-                        onLoad({
-                            scene: scene,
-                            scenes: [scene],
-                            asset: json.asset,
-                            userData: {}
-                        });
-                    }).catch(onError);
-                },
-                
-                loadScene: function() {
-                    var json = this.json;
-                    var scene = new THREE.Group();
-                    
-                    if (json.scenes && json.scenes.length > 0) {
-                        var sceneIndex = json.scene !== undefined ? json.scene : 0;
-                        var sceneDef = json.scenes[sceneIndex];
-                        
-                        if (sceneDef.nodes) {
-                            for (var i = 0; i < sceneDef.nodes.length; i++) {
-                                this.loadNode(sceneDef.nodes[i], scene);
-                            }
-                        }
-                    }
-                    
-                    return Promise.resolve(scene);
-                },
-                
-                loadNode: function(nodeIndex, parent) {
-                    var json = this.json;
-                    var nodeDef = json.nodes[nodeIndex];
-                    var node = new THREE.Group();
-                    
-                    if (nodeDef.name) node.name = nodeDef.name;
-                    
-                    if (nodeDef.matrix) {
-                        node.matrix.fromArray(nodeDef.matrix);
-                        node.matrix.decompose(node.position, node.quaternion, node.scale);
-                    } else {
-                        if (nodeDef.translation) node.position.fromArray(nodeDef.translation);
-                        if (nodeDef.rotation) node.quaternion.fromArray(nodeDef.rotation);
-                        if (nodeDef.scale) node.scale.fromArray(nodeDef.scale);
-                    }
-                    
-                    if (nodeDef.mesh !== undefined) {
-                        this.loadMesh(nodeDef.mesh, node);
-                    }
-                    
-                    if (nodeDef.children) {
-                        for (var i = 0; i < nodeDef.children.length; i++) {
-                            this.loadNode(nodeDef.children[i], node);
-                        }
-                    }
-                    
-                    parent.add(node);
-                    return node;
-                },
-                
-                loadMesh: function(meshIndex, node) {
-                    // Simplified mesh loading - create a placeholder cube
-                    var geometry = new THREE.BoxGeometry(1, 1, 1);
-                    var material = new THREE.MeshLambertMaterial({ color: 0xFFD700 });
-                    var mesh = new THREE.Mesh(geometry, material);
-                    mesh.castShadow = true;
-                    mesh.receiveShadow = true;
-                    node.add(mesh);
-                }
-            };
-            
-            console.log('Custom GLTFLoader implementation loaded');
-        })();
-        
-        // Initialize model viewer
-        function initializeModelViewer() {
-            const modelContainer = document.getElementById('model-viewer');
-            if (modelContainer) {
-                new ModelViewer(modelContainer, {
-                    width: 400,
-                    height: 400,
-                    autoRotate: true,
-                    autoRotateSpeed: 0.3,
-                    enableControls: true,
-                    useRealModel: true
-                });
-            }
-        }
-
-        // 3D Model Viewer Implementation
-        class ModelViewer {
-            constructor(container, options = {}) {
-                this.container = container;
-                this.options = {
-                    width: 400,
-                    height: 400,
-                    autoRotate: true,
-                    autoRotateSpeed: 0.5,
-                    enableControls: true,
-                    useRealModel: true,
-                    ...options
-                };
-                
-                this.scene = null;
-                this.camera = null;
-                this.renderer = null;
-                this.model = null;
-                this.animationId = null;
-                this.controls = null;
-                
-                this.init();
-            }
-            
-            init() {
-                // Scene setup
-                this.scene = new THREE.Scene();
-                this.scene.background = new THREE.Color(0xf8fafc);
-                
-                // Camera setup
-                this.camera = new THREE.PerspectiveCamera(
-                    50,
-                    this.options.width / this.options.height,
-                    0.1,
-                    1000
-                );
-                this.camera.position.set(5, 5, 5);
-                
-                // Renderer setup
-                this.renderer = new THREE.WebGLRenderer({ 
-                    antialias: true,
-                    alpha: true 
-                });
-                this.renderer.setSize(this.options.width, this.options.height);
-                this.renderer.shadowMap.enabled = true;
-                this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-                this.renderer.outputEncoding = THREE.sRGBEncoding;
-                this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-                
-                this.container.appendChild(this.renderer.domElement);
-                
-                // Lighting setup
-                this.setupLighting();
-                
-                // Load model
-                this.loadModel();
-                
-                // Controls (basic orbit simulation)
-                if (this.options.enableControls) {
-                    this.setupControls();
-                }
-                
-                // Start animation
-                this.animate();
-                
-                // Handle resize
-                window.addEventListener('resize', () => this.handleResize());
-            }
-            
-            setupLighting() {
-                // Ambient light
-                const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
-                this.scene.add(ambientLight);
-                
-                // Directional light (key light)
-                const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-                directionalLight.position.set(5, 5, 5);
-                directionalLight.castShadow = true;
-                directionalLight.shadow.mapSize.width = 2048;
-                directionalLight.shadow.mapSize.height = 2048;
-                this.scene.add(directionalLight);
-                
-                // Fill light
-                const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
-                fillLight.position.set(-5, 2, 5);
-                this.scene.add(fillLight);
-                
-                // Rim light
-                const rimLight = new THREE.DirectionalLight(0xffffff, 0.5);
-                rimLight.position.set(0, 4, -5);
-                this.scene.add(rimLight);
-            }
-            
-            loadModel() {
-                // Load the actual construction crane model
-                this.loadGLBModel('https://github.com/BlackridgeNews/Krishnaconstruction/raw/main/crane_big.glb');
-            }
-            
-            loadGLBModel(url) {
-                const loader = new THREE.GLTFLoader();
-                
-                // Add loading indicator
-                const loadingDiv = document.createElement('div');
-                loadingDiv.style.cssText = `
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    color: #64748b;
-                    font-size: 14px;
-                    font-weight: 500;
-                    background: rgba(255, 255, 255, 0.9);
-                    padding: 10px 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                `;
-                loadingDiv.textContent = 'Loading 3D Model...';
-                this.container.style.position = 'relative';
-                this.container.appendChild(loadingDiv);
-                
-                loader.load(
-                    url,
-                    (gltf) => {
-                        // Remove loading indicator
-                        if (loadingDiv.parentNode) {
-                            loadingDiv.parentNode.removeChild(loadingDiv);
-                        }
-                        
-                        const model = gltf.scene;
-                        
-                        // Setup model properties
-                        model.traverse((child) => {
-                            if (child.isMesh) {
-                                child.castShadow = true;
-                                child.receiveShadow = true;
-                                
-                                // Ensure materials are properly set up
-                                if (child.material) {
-                                    child.material.needsUpdate = true;
-                                }
-                            }
-                        });
-                        
-                        // Calculate bounding box and center the model
-                        const box = new THREE.Box3().setFromObject(model);
-                        const center = box.getCenter(new THREE.Vector3());
-                        const size = box.getSize(new THREE.Vector3());
-                        
-                        // Center the model
-                        model.position.x = -center.x;
-                        model.position.y = -center.y;
-                        model.position.z = -center.z;
-                        
-                        // Scale the model to fit in the viewport
-                        const maxDim = Math.max(size.x, size.y, size.z);
-                        const scale = 3 / maxDim;
-                        model.scale.setScalar(scale);
-                        
-                        // Position the model slightly above ground
-                        model.position.y += (size.y * scale) / 2;
-                        
-                        this.model = model;
-                        this.scene.add(model);
-                        
-                        // Adjust camera position based on model size
-                        const distance = maxDim * scale * 2;
-                        this.camera.position.set(distance, distance * 0.8, distance);
-                        this.camera.lookAt(0, 0, 0);
-                        
-                        console.log('Construction crane model loaded successfully');
-                    },
-                    (progress) => {
-                        // Update loading progress
-                        if (progress.total > 0) {
-                            const percent = Math.round((progress.loaded / progress.total) * 100);
-                            loadingDiv.textContent = `Loading 3D Model... ${percent}%`;
-                        }
-                    },
-                    (error) => {
-                        console.error('Error loading GLB model:', error);
-                        // Remove loading indicator
-                        if (loadingDiv.parentNode) {
-                            loadingDiv.parentNode.removeChild(loadingDiv);
-                        }
-                        
-                        // Show error message instead of fallback
-                        const errorDiv = document.createElement('div');
-                        errorDiv.style.cssText = `
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                            color: #ef4444;
-                            font-size: 14px;
-                            font-weight: 500;
-                            text-align: center;
-                            background: rgba(255, 255, 255, 0.9);
-                            padding: 20px;
-                            border-radius: 8px;
-                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                        `;
-                        errorDiv.innerHTML = 'Failed to load 3D model<br><span style="font-size: 12px; color: #64748b;">Check console for details</span>';
-                        this.container.appendChild(errorDiv);
-                    }
-                );
-            }
-            
-            createConstructionModel() {
-                const group = new THREE.Group();
-                
-                // Create a more detailed construction crane model
-                // Main mast
-                const mastGeometry = new THREE.CylinderGeometry(0.08, 0.08, 5);
-                const craneMaterial = new THREE.MeshLambertMaterial({ 
-                    color: 0xFFD700 // Yellow crane color
-                });
-                const mast = new THREE.Mesh(mastGeometry, craneMaterial);
-                mast.position.y = 2.5;
-                mast.castShadow = true;
-                group.add(mast);
-                
-                // Horizontal jib (boom)
-                const jibGeometry = new THREE.BoxGeometry(4, 0.15, 0.15);
-                const jib = new THREE.Mesh(jibGeometry, craneMaterial);
-                jib.position.set(1.5, 5, 0);
-                jib.castShadow = true;
-                group.add(jib);
-                
-                // Counter jib
-                const counterJibGeometry = new THREE.BoxGeometry(1.5, 0.12, 0.12);
-                const counterJib = new THREE.Mesh(counterJibGeometry, craneMaterial);
-                counterJib.position.set(-1, 5, 0);
-                counterJib.castShadow = true;
-                group.add(counterJib);
-                
-                // Trolley on the jib
-                const trolleyGeometry = new THREE.BoxGeometry(0.3, 0.2, 0.3);
-                const trolleyMaterial = new THREE.MeshLambertMaterial({ color: 0xFF6B6B });
-                const trolley = new THREE.Mesh(trolleyGeometry, trolleyMaterial);
-                trolley.position.set(2.5, 5.2, 0);
-                trolley.castShadow = true;
-                group.add(trolley);
-                
-                // Hook
-                const hookGeometry = new THREE.SphereGeometry(0.1);
-                const hookMaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
-                const hook = new THREE.Mesh(hookGeometry, hookMaterial);
-                hook.position.set(2.5, 4.5, 0);
-                hook.castShadow = true;
-                group.add(hook);
-                
-                // Cable (simplified as a thin cylinder)
-                const cableGeometry = new THREE.CylinderGeometry(0.02, 0.02, 0.7);
-                const cableMaterial = new THREE.MeshLambertMaterial({ color: 0x444444 });
-                const cable = new THREE.Mesh(cableGeometry, cableMaterial);
-                cable.position.set(2.5, 4.85, 0);
-                group.add(cable);
-                
-                // Crane base
-                const baseGeometry = new THREE.CylinderGeometry(0.5, 0.6, 0.3);
-                const baseMaterial = new THREE.MeshLambertMaterial({ color: 0x8B7355 });
-                const base = new THREE.Mesh(baseGeometry, baseMaterial);
-                base.position.y = 0.15;
-                base.castShadow = true;
-                base.receiveShadow = true;
-                group.add(base);
-                
-                // Create a simple building under construction
-                const buildingGeometry = new THREE.BoxGeometry(1.5, 2, 1);
-                const buildingMaterial = new THREE.MeshLambertMaterial({ 
-                    color: 0xCCCCCC // Light gray concrete
-                });
-                const building = new THREE.Mesh(buildingGeometry, buildingMaterial);
-                building.position.set(-2, 1, -1.5);
-                building.castShadow = true;
-                building.receiveShadow = true;
-                group.add(building);
-                
-                // Construction materials scattered around
-                const materialGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.6);
-                const materialMat = new THREE.MeshLambertMaterial({ 
-                    color: 0x8B4513 // Brown wood
-                });
-                
-                for (let i = 0; i < 6; i++) {
-                    const material = new THREE.Mesh(materialGeometry, materialMat);
-                    const angle = (i / 6) * Math.PI * 2;
-                    material.position.set(
-                        Math.cos(angle) * 1.5,
-                        0.15,
-                        Math.sin(angle) * 1.5
-                    );
-                    material.rotation.y = angle;
-                    material.castShadow = true;
-                    material.receiveShadow = true;
-                    group.add(material);
-                }
-                
-                // Create ground plane
-                const groundGeometry = new THREE.PlaneGeometry(8, 8);
-                const groundMaterial = new THREE.MeshLambertMaterial({ 
-                    color: 0xDEB887 // Sandy brown construction site
-                });
-                const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-                ground.rotation.x = -Math.PI / 2;
-                ground.receiveShadow = true;
-                group.add(ground);
-                
-                // Scale and position the entire model
-                group.scale.setScalar(0.6);
-                group.position.y = -0.3;
-                
-                this.model = group;
-                this.scene.add(group);
-                
-                console.log('Professional construction crane model created as fallback');
-            }
-            
-            setupControls() {
-                // Simple mouse interaction for rotation
-                let isMouseDown = false;
-                let mouseX = 0, mouseY = 0;
-                
-                this.renderer.domElement.addEventListener('mousedown', (e) => {
-                    isMouseDown = true;
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                });
-                
-                this.renderer.domElement.addEventListener('mousemove', (e) => {
-                    if (!isMouseDown || !this.model) return;
-                    
-                    const deltaX = e.clientX - mouseX;
-                    const deltaY = e.clientY - mouseY;
-                    
-                    this.model.rotation.y += deltaX * 0.01;
-                    this.model.rotation.x += deltaY * 0.01;
-                    
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                });
-                
-                this.renderer.domElement.addEventListener('mouseup', () => {
-                    isMouseDown = false;
-                });
-                
-                this.renderer.domElement.addEventListener('wheel', (e) => {
-                    if (!this.camera) return;
-                    
-                    const delta = e.deltaY * 0.01;
-                    this.camera.position.z += delta;
-                    this.camera.position.z = Math.max(3, Math.min(15, this.camera.position.z));
-                });
-            }
-            
-            animate() {
-                this.animationId = requestAnimationFrame(() => this.animate());
-                
-                // Auto rotation
-                if (this.options.autoRotate && this.model) {
-                    this.model.rotation.y += this.options.autoRotateSpeed * 0.01;
-                }
-                
-                // Update camera to look at model center
-                this.camera.lookAt(0, 0, 0);
-                
-                this.renderer.render(this.scene, this.camera);
-            }
-            
-            handleResize() {
-                if (!this.camera || !this.renderer) return;
-                
-                const rect = this.container.getBoundingClientRect();
-                this.camera.aspect = rect.width / rect.height;
-                this.camera.updateProjectionMatrix();
-                this.renderer.setSize(rect.width, rect.height);
-            }
-            
-            destroy() {
-                if (this.animationId) {
-                    cancelAnimationFrame(this.animationId);
-                }
-                if (this.renderer && this.container.contains(this.renderer.domElement)) {
-                    this.container.removeChild(this.renderer.domElement);
-                }
-                if (this.renderer) {
-                    this.renderer.dispose();
-                }
-            }
-        }
-
         // Iridescence background implementation
         class IridescenceBackground {
             constructor(container) {
@@ -1813,9 +1555,122 @@
         if (auroraContainer) {
             new IridescenceBackground(auroraContainer);
         }
-        
-        // Initialize model viewer
-        initializeModelViewer();
+
+        // Login Modal functionality
+        const loginBtn = document.getElementById('login-btn');
+        const loginModal = document.getElementById('login-modal');
+        const closeModal = document.getElementById('close-modal');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+
+        // Open modal
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal
+        function closeLoginModal() {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModal.addEventListener('click', closeLoginModal);
+
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                closeLoginModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && loginModal.classList.contains('active')) {
+                closeLoginModal();
+            }
+        });
+
+        // Tab switching
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+                
+                // Update active tab
+                authTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update active form
+                authForms.forEach(form => {
+                    form.classList.remove('active');
+                    if (form.id === `${targetTab}-form`) {
+                        form.classList.add('active');
+                    }
+                });
+
+                // Update modal title
+                const modalTitle = document.querySelector('.modal-title');
+                const modalSubtitle = document.querySelector('.modal-subtitle');
+                
+                if (targetTab === 'login') {
+                    modalTitle.textContent = 'Welcome Back';
+                    modalSubtitle.textContent = 'Access your Krishna Construction account';
+                } else {
+                    modalTitle.textContent = 'Create Account';
+                    modalSubtitle.textContent = 'Join Krishna Construction today';
+                }
+            });
+        });
+
+        // Form submissions
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Simple validation
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate login
+            alert(`Login attempted for: ${email}`);
+            closeLoginModal();
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const phone = document.getElementById('signup-phone').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm').value;
+            
+            // Validation
+            if (!name || !email || !phone || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            // Simulate signup
+            alert(`Account created for: ${name} (${email})`);
+            closeLoginModal();
+        });
+
+        // Forgot password
+        document.getElementById('forgot-password').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = prompt('Enter your email address to reset your password:');
+            if (email) {
+                alert(`Password reset link sent to: ${email}`);
+            }
+        });
 
         // Contact form handling
         document.getElementById('contact-form').addEventListener('submit', function(e) {
