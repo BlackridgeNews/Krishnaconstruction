@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -503,48 +504,6 @@
             line-height: 1.5;
         }
 
-        .about-stats {
-            background: #f8fafc;
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s ease;
-        }
-
-        .stat-item:hover {
-            border-color: #1e40af;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            color: #64748b;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
         .about-mission {
             background: white;
             padding: 30px;
@@ -663,154 +622,6 @@
             -webkit-background-clip: text;
             color: transparent;
             animation: gradient linear infinite;
-        }
-
-        .filter-section {
-            background: white;
-            padding: 30px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .filter-controls {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* GooeyNav Styles */
-        .gooey-nav-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .gooey-nav-container nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 8px;
-            background: #f1f5f9;
-            border-radius: 50px;
-            padding: 8px;
-            position: relative;
-        }
-
-        .gooey-nav-container nav li {
-            position: relative;
-        }
-
-        .gooey-nav-container nav li a {
-            display: block;
-            padding: 12px 24px;
-            text-decoration: none;
-            color: #64748b;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border-radius: 25px;
-            transition: color 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .gooey-nav-container nav li.active a {
-            color: white;
-        }
-
-        .effect {
-            position: absolute;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .effect.filter {
-            background: #1e40af;
-            border-radius: 25px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-
-        .effect.text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 500;
-            font-size: 0.9rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 3;
-        }
-
-        .effect.text.active {
-            opacity: 1;
-        }
-
-        .particle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .particle .point {
-            width: 100%;
-            height: 100%;
-            background: var(--color, rgba(255, 255, 255, 0.8));
-            border-radius: 50%;
-            transform: scale(var(--scale, 1)) rotate(var(--rotate, 0deg));
-            animation: particle-move var(--time, 1000ms) ease-out forwards;
-        }
-
-        @keyframes particle-move {
-            0% {
-                transform: translate(var(--start-x, 0), var(--start-y, 0)) scale(var(--scale, 1)) rotate(var(--rotate, 0deg));
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--end-x, 0), var(--end-y, 0)) scale(0) rotate(calc(var(--rotate, 0deg) + 180deg));
-                opacity: 0;
-            }
-        }
-
-        .gooey-nav-container.active .effect.filter {
-            filter: blur(10px);
-        }
-
-        /* CSS Variables for particle colors */
-        :root {
-            --color-1: rgba(255, 255, 255, 0.9);
-            --color-2: rgba(135, 206, 250, 0.8);
-            --color-3: rgba(173, 216, 230, 0.7);
-            --color-4: rgba(255, 255, 255, 0.6);
-        }
-
-        .search-box {
-            padding: 12px 20px;
-            border: 1px solid #e2e8f0;
-            border-radius: 25px;
-            background: white;
-            color: #1e293b;
-            font-size: 0.9rem;
-            min-width: 300px;
-            transition: all 0.2s ease;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: #1e40af;
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-        }
-
-        .search-box::placeholder {
-            color: #94a3b8;
         }
 
         .projects-section {
@@ -997,47 +808,6 @@
             color: #64748b;
         }
 
-        .stats-section {
-            background: white;
-            padding: 60px 0;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 30px 20px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .stat-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #64748b;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
         footer {
             background: #1e293b;
             color: #94a3b8;
@@ -1132,18 +902,6 @@
             text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 8px;
-        }
-
         .form-group input,
         .form-group select,
         .form-group textarea {
@@ -1223,15 +981,6 @@
                 gap: 20px;
             }
 
-            .filter-controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .search-box {
-                min-width: 100%;
-            }
-
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -1280,7 +1029,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <!-- REPLACE THIS PLACEHOLDER WITH YOUR COMPLETE SVG CODE -->
+                    <!-- PLACEHOLDER FOR LOGO - REPLACE WITH YOUR COMPLETE SVG CODE -->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" zoomAndPan="magnify" viewBox="0 0 375 374.999991" height="500" preserveAspectRatio="xMidYMid meet" version="1.2">
                                     <defs>
                         <clipPath id="f5a2fa4ebd"><path d="M 254 134 L 270.308594 134 L 270.308594 230 L 254 230 Z M 254 134 "/></clipPath>
@@ -1327,7 +1076,7 @@
                     </g>
    
                     </svg>
-                    <!-- END SVG PLACEHOLDER -->
+                    <!-- END LOGO PLACEHOLDER -->
                     <span class="logo-text">Sri Krishna Construction</span>
                 </div>
                 <div class="nav-section">
@@ -1441,37 +1190,6 @@
         </div>
     </section>
 
-    <section class="filter-section">
-        <div class="container">
-            <div class="filter-controls">
-                <div class="gooey-nav-container" id="gooey-nav">
-                    <nav>
-                        <ul id="nav-list">
-                            <li class="active">
-                                <a href="javascript:void(0)" data-filter="all">All Projects</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" data-filter="commercial">Commercial</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" data-filter="residential">Residential</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" data-filter="completed">Completed</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" data-filter="in-progress">In Progress</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <span class="effect filter" id="nav-filter"></span>
-                    <span class="effect text" id="nav-text"></span>
-                </div>
-                <input type="text" class="search-box" placeholder="Search projects..." id="search-input">
-            </div>
-        </div>
-    </section>
-
     <section class="about-section" id="about">
         <div class="container">
             <h2 class="section-title">About Sri Krishna Construction</h2>
@@ -1511,36 +1229,12 @@
                     </div>
                 </div>
                 
-                <div class="about-stats">
-                    <div class="stats-container">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Projects Completed</div>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <div class="stat-number">25+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <div class="stat-number">1000+</div>
-                            <div class="stat-label">Happy Families</div>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Expert Team</div>
-                        </div>
-                    </div>
+                <div class="about-mission">
+                    <h4>Our Mission</h4>
+                    <p>To create exceptional living and working spaces that enhance the quality of life for our clients while maintaining the highest standards of construction excellence, environmental responsibility, and customer service.</p>
                     
-                    <div class="about-mission">
-                        <h4>Our Mission</h4>
-                        <p>To create exceptional living and working spaces that enhance the quality of life for our clients while maintaining the highest standards of construction excellence, environmental responsibility, and customer service.</p>
-                        
-                        <h4>Our Vision</h4>
-                        <p>To be the most trusted and innovative construction company in India, known for transforming architectural dreams into reality through sustainable building practices and cutting-edge technology.</p>
-                    </div>
+                    <h4>Our Vision</h4>
+                    <p>To be the most trusted and innovative construction company in India, known for transforming architectural dreams into reality through sustainable building practices and cutting-edge technology.</p>
                 </div>
             </div>
         </div>
@@ -1548,33 +1242,9 @@
 
     <section class="projects-section">
         <div class="container">
-            <h2 class="section-title">Project Overview</h2>
+            <h2 class="section-title">Our Projects</h2>
             <div class="projects-grid" id="projects-grid">
                 <!-- Projects will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <section class="stats-section">
-        <div class="container">
-            <h2 class="section-title">Project Overview</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="total-projects">0</div>
-                    <div class="stat-label">Total Projects</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="completed-projects">0</div>
-                    <div class="stat-label">Completed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="active-projects">0</div>
-                    <div class="stat-label">Active Projects</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="investment-value">₹0</div>
-                    <div class="stat-label">Total Investment</div>
-                </div>
             </div>
         </div>
     </section>
@@ -1754,7 +1424,7 @@
                 };
                 
                 // Set initial uniform values
-                this.gl.uniform3f(this.uniforms.uColor, 1.0, 1.0, 1.0); // White color as specified
+                this.gl.uniform3f(this.uniforms.uColor, 1.0, 1.0, 1.0);
                 this.gl.uniform2f(this.uniforms.uMouse, this.mousePos.x, this.mousePos.y);
                 this.gl.uniform1f(this.uniforms.uAmplitude, 0.1);
                 this.gl.uniform1f(this.uniforms.uSpeed, 1.0);
@@ -1830,176 +1500,6 @@
                 if (this.gl) {
                     const ext = this.gl.getExtension('WEBGL_lose_context');
                     if (ext) ext.loseContext();
-                }
-            }
-        }
-
-        // GooeyNav Implementation
-        class GooeyNav {
-            constructor(container) {
-                this.container = container;
-                this.navList = container.querySelector('#nav-list');
-                this.filterEffect = container.querySelector('#nav-filter');
-                this.textEffect = container.querySelector('#nav-text');
-                this.activeIndex = 0;
-                this.animationTime = 600;
-                this.particleCount = 12;
-                this.particleDistances = [60, 8];
-                this.particleR = 80;
-                this.timeVariance = 200;
-                this.colors = [1, 2, 3, 1, 2, 3, 1, 4];
-                
-                this.init();
-            }
-            
-            init() {
-                if (!this.navList || !this.filterEffect || !this.textEffect) {
-                    console.warn('GooeyNav: Required elements not found');
-                    return;
-                }
-                
-                this.setupEventListeners();
-                
-                const firstItem = this.navList.children[this.activeIndex];
-                if (firstItem) {
-                    this.updateEffectPosition(firstItem);
-                    this.textEffect.classList.add('active');
-                }
-            }
-            
-            setupEventListeners() {
-                Array.from(this.navList.children).forEach((li, index) => {
-                    const link = li.querySelector('a');
-                    if (link) {
-                        link.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            this.handleClick(li, index);
-                        });
-                    }
-                });
-            }
-            
-            noise(n = 1) {
-                return n / 2 - Math.random() * n;
-            }
-            
-            getXY(distance, pointIndex, totalPoints) {
-                const angle = ((360 + this.noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
-                return [distance * Math.cos(angle), distance * Math.sin(angle)];
-            }
-            
-            createParticle(i, t, d, r) {
-                let rotate = this.noise(r / 10);
-                return {
-                    start: this.getXY(d[0], this.particleCount - i, this.particleCount),
-                    end: this.getXY(d[1] + this.noise(7), this.particleCount - i, this.particleCount),
-                    time: t,
-                    scale: 1 + this.noise(0.2),
-                    color: this.colors[Math.floor(Math.random() * this.colors.length)],
-                    rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10,
-                };
-            }
-            
-            makeParticles(element) {
-                const d = this.particleDistances;
-                const r = this.particleR;
-                const bubbleTime = this.animationTime * 2 + this.timeVariance;
-                element.style.setProperty('--time', `${bubbleTime}ms`);
-                
-                for (let i = 0; i < this.particleCount; i++) {
-                    const t = this.animationTime * 2 + this.noise(this.timeVariance * 2);
-                    const p = this.createParticle(i, t, d, r);
-                    element.classList.remove('active');
-                    
-                    setTimeout(() => {
-                        const particle = document.createElement('span');
-                        const point = document.createElement('span');
-                        particle.classList.add('particle');
-                        particle.style.setProperty('--start-x', `${p.start[0]}px`);
-                        particle.style.setProperty('--start-y', `${p.start[1]}px`);
-                        particle.style.setProperty('--end-x', `${p.end[0]}px`);
-                        particle.style.setProperty('--end-y', `${p.end[1]}px`);
-                        particle.style.setProperty('--time', `${p.time}ms`);
-                        particle.style.setProperty('--scale', `${p.scale}`);
-                        particle.style.setProperty('--color', `var(--color-${p.color}, white)`);
-                        particle.style.setProperty('--rotate', `${p.rotate}deg`);
-                        
-                        point.classList.add('point');
-                        particle.appendChild(point);
-                        element.appendChild(particle);
-                        
-                        requestAnimationFrame(() => {
-                            element.classList.add('active');
-                        });
-                        
-                        setTimeout(() => {
-                            try {
-                                element.removeChild(particle);
-                            } catch (e) {
-                                // Particle already removed
-                            }
-                        }, t);
-                    }, 30);
-                }
-            }
-            
-            updateEffectPosition(liElement) {
-                if (!this.container || !this.filterEffect || !this.textEffect || !liElement) return;
-                
-                const containerRect = this.container.getBoundingClientRect();
-                const pos = liElement.getBoundingClientRect();
-                
-                const styles = {
-                    left: `${pos.x - containerRect.x}px`,
-                    top: `${pos.y - containerRect.y}px`,
-                    width: `${pos.width}px`,
-                    height: `${pos.height}px`,
-                };
-                
-                Object.assign(this.filterEffect.style, styles);
-                Object.assign(this.textEffect.style, styles);
-                
-                const linkElement = liElement.querySelector('a');
-                if (linkElement) {
-                    this.textEffect.innerText = linkElement.innerText;
-                }
-            }
-            
-            handleClick(liElement, index) {
-                if (this.activeIndex === index) return;
-                
-                // Update active states
-                Array.from(this.navList.children).forEach(li => li.classList.remove('active'));
-                liElement.classList.add('active');
-                this.activeIndex = index;
-                
-                // Update effect position
-                this.updateEffectPosition(liElement);
-                
-                // Clear existing particles
-                const particles = this.filterEffect.querySelectorAll('.particle');
-                particles.forEach(p => this.filterEffect.removeChild(p));
-                
-                // Animate text
-                this.textEffect.classList.remove('active');
-                void this.textEffect.offsetWidth; // Force reflow
-                this.textEffect.classList.add('active');
-                
-                // Create new particles
-                this.makeParticles(this.filterEffect);
-                
-                // Trigger filter change
-                const linkElement = liElement.querySelector('a');
-                if (linkElement) {
-                    const filterValue = linkElement.getAttribute('data-filter');
-                    this.onFilterChange(filterValue);
-                }
-            }
-            
-            onFilterChange(filter) {
-                // This will be connected to the main filter functionality
-                if (window.filterProjects) {
-                    window.filterProjects(filter);
                 }
             }
         }
@@ -2120,8 +1620,6 @@
             }
         ];
 
-        let filteredProjects = projects;
-
         function renderProjects(projectsToRender) {
             const grid = document.getElementById('projects-grid');
             grid.innerHTML = '';
@@ -2173,63 +1671,13 @@
             });
         }
 
-        function updateStats() {
-            const totalProjects = projects.length;
-            const completedProjects = projects.filter(p => p.status === 'completed').length;
-            const activeProjects = projects.filter(p => p.status === 'in-progress').length;
-            const totalInvestment = projects.reduce((sum, p) => {
-                const value = parseFloat(p.budget.replace('₹', '').replace(' Crores', ''));
-                return sum + value;
-            }, 0);
-
-            document.getElementById('total-projects').textContent = totalProjects;
-            document.getElementById('completed-projects').textContent = completedProjects;
-            document.getElementById('active-projects').textContent = activeProjects;
-            document.getElementById('investment-value').textContent = `₹${totalInvestment}Cr`;
-        }
-
-        function filterProjects(filter) {
-            if (filter === 'all') {
-                filteredProjects = projects;
-            } else if (filter === 'commercial' || filter === 'residential') {
-                filteredProjects = projects.filter(p => p.type === filter);
-            } else if (filter === 'completed' || filter === 'in-progress') {
-                filteredProjects = projects.filter(p => p.status === filter);
-            }
-            renderProjects(filteredProjects);
-        }
-
-        // Make filterProjects available globally for GooeyNav
-        window.filterProjects = filterProjects;
-
-        function searchProjects(query) {
-            const searchResults = filteredProjects.filter(p => 
-                p.title.toLowerCase().includes(query.toLowerCase()) ||
-                p.location.toLowerCase().includes(query.toLowerCase()) ||
-                p.client.toLowerCase().includes(query.toLowerCase())
-            );
-            renderProjects(searchResults);
-        }
-
-        // Event listeners
-        document.querySelector('#search-input').addEventListener('input', (e) => {
-            searchProjects(e.target.value);
-        });
-
         // Initialize
         renderProjects(projects);
-        updateStats();
         
         // Initialize Iridescence background
         const auroraContainer = document.getElementById('aurora-container');
         if (auroraContainer) {
             new IridescenceBackground(auroraContainer);
-        }
-
-        // Initialize GooeyNav
-        const gooeyNavContainer = document.getElementById('gooey-nav');
-        if (gooeyNavContainer) {
-            new GooeyNav(gooeyNavContainer);
         }
 
         // Login Modal functionality
